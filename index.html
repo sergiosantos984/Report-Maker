@@ -147,7 +147,7 @@
                 <span class="font-semibold text-[17px] tracking-tight text-[#1D1D1F]">Aptonet</span>
             </div>
             <div class="text-xs text-[#86868B] bg-[#E8E8ED]/40 px-3 py-1.5 rounded-full border border-black/[0.03]">
-                v4.0 Master Pipeline Matrix
+                v4.1 Master Pipeline Matrix
             </div>
         </header>
 
@@ -439,7 +439,8 @@
                 return;
             }
 
-            const wb = XLSX.book_new();
+            // Fixed the typo here by changing to XLSX.utils.book_new()
+            const wb = XLSX.utils.book_new();
             const wsData = [];
 
             const THEME = {
@@ -639,8 +640,8 @@
             const simulatedRows = [
                 { "Prim. Sales": "John Doe", "Prm. Recruiter": "Aidan Mcg", "Date Issued": "7-May", "Job Title": "Capital Market Analyst", "Job Ref#": "26-05926", "Priority": "A", "Status": "OPEN", "Division": "Finance", "Client": "RBC CAPITAL MARKETS", "Maximum Pay Rate": 65, "Maximum Bill Rate": 90, "City": "Toronto", "Openings": 1, "Division of Prim. Sales": "Capital Markets", "Submittals": 2, "Interviews": 0, "Rejections": 0, "Hires": 0, "Last Activity Date": "27-May" },
                 { "Prim. Sales": "Jane Smith", "Prm. Recruiter": "Aidan Mcg", "Date Issued": "6-May", "Job Title": "DevOps Engineer", "Job Ref#": "26000B8C", "Priority": "A", "Status": "OPEN", "Division": "IT", "Client": "Societe Generale", "Maximum Pay Rate": 85, "Maximum Bill Rate": 120, "City": "Toronto", "Openings": 1, "Division of Prim. Sales": "Enterprise IT", "Submittals": 0, "Interviews": 0, "Rejections": 0, "Hires": 0, "Last Activity Date": "22-May" },
-                { "Prim. Sales": "John Doe", "Prm. Recruiter": "Brynne Mi", "Date Issued": "27-May", "Job Title": "Level 3 IT Support", "Job Ref#": "26-06954", "Priority": "A", "Status": "OPEN", "Division": "IT", "Client": "Aptonet Council", "Maximum Pay Rate": 45, "Maximum Bill Rate": 65, "City": "Blue Ash", "Openings": 1, "Division of Prim. Sales": "Public Sector", "Submittals": 4, "Interviews": 1, "Rejections": 0, "Hires": 1, "Last Activity Date": "28-May" },
-                { "Prim. Sales": "Bob Vance", "Prm. Recruiter": "Kayla Hine", "Date Issued": "20-May", "Job Title": "Software Engineer", "Job Ref#": "26-06617", "Priority": "Covered", "Status": "FILLED", "Division": "Engineering", "Client": "Reinsurance Group", "Maximum Pay Rate": 95, "Maximum Bill Rate": 135, "City": "Statement", "Openings": 4, "Division of Prim. Sales": "Insurance Tech", "Submittals": 2, "Interviews": 2, "Rejections": 0, "Hires": 1, "Last Activity Date": "21-May" }
+                { "Prim. Sales": "John Doe", "Prm. Recruiter": "Brynne Mi", "Date Issued": "27-May", "Job Title": "Level 3 IT Support", "Job Ref#": "26-06954", "Priority": "A", "Status": "OPEN", "Division": "IT", "Company": "Aptonet Council", "Maximum Pay Rate": 45, "Maximum Bill Rate": 65, "City": "Blue Ash", "Openings": 1, "Division of Prim. Sales": "Public Sector", "Submittals": 4, "Interviews": 1, "Rejections": 0, "Hires": 1, "Last Activity Date": "28-May" },
+                { "Prim. Sales": "Bob Vance", "Prm. Recruiter": "Kayla Hine", "Date Issued": "20-May", "Job Title": "Software Engineer", "Job Ref#": "26-06617", "Priority": "Covered", "Status": "FILLED", "Division": "Engineering", "Company": "Reinsurance Group", "Maximum Pay Rate": 95, "Maximum Bill Rate": 135, "City": "Statement", "Openings": 4, "Division of Prim. Sales": "Insurance Tech", "Submittals": 2, "Interviews": 2, "Rejections": 0, "Hires": 1, "Last Activity Date": "21-May" }
             ];
             const ws = XLSX.utils.json_to_sheet(simulatedRows);
             workbookInstance = XLSX.utils.book_new();
@@ -696,6 +697,7 @@
             renderTableBodyData();
         }
 
+        // ================= FIX: INTERCHANGEABLE CLIENT/COMPANY HEADER MAPPING =================
         function applyFuzzyHeadersMap(rawHeaders) {
             resolvedColumnMapping = {};
             MANDATORY_COLUMNS.forEach(target => {
@@ -711,6 +713,8 @@
                     if (lowerTarget === "prmrecruiter" && (norm.includes("recruiter") || norm.includes("recruit") || norm.includes("owner"))) return true;
                     if (lowerTarget === "dateissued" && (norm.includes("issued") || norm === "date")) return true;
                     if (lowerTarget === "jobref#" && (norm.includes("ref") || norm.includes("req") || norm.includes("jobid") || norm.includes("number"))) return true;
+                    // Catch cases where file column is called "Company" instead of "Client"
+                    if (lowerTarget === "client" && (norm.includes("client") || norm.includes("company"))) return true;
                     return false;
                 });
 
