@@ -19,7 +19,6 @@
         .fade-in { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Premium Soft Shadows & UI Tweaks */
         .premium-card { background: #FFFFFF; border: 1px solid #D9E1EA; box-shadow: 0 4px 12px rgba(15, 45, 82, 0.03); border-radius: 12px; }
         
         @media print {
@@ -42,7 +41,7 @@
                 <span class="font-bold text-[19px] tracking-tight text-[#0F2D52]">Aptonet Workforce Intelligence</span>
             </div>
             <div class="text-xs font-medium text-[#1F5AA6] bg-[#4F8EF7]/10 px-3 py-1.5 rounded-full border border-[#4F8EF7]/20">
-                Enterprise Edition v4.5
+                Enterprise Edition v4.6
             </div>
         </header>
 
@@ -51,7 +50,7 @@
                 Recruitment Operations Analytics Hub
             </h1>
             <p class="text-base sm:text-lg font-normal text-[#9B9B9B] max-w-2xl mx-auto mb-10">
-                Upload your pipeline metrics spreadsheets to transform raw data into a 6-sheet corporate workbook package with built-in visual funnels, frozen panes, and KPI conditional styling.
+                Upload your pipeline metrics spreadsheets to transform raw data into a premium 6-sheet corporate workbook package with custom visual charts, frozen panes, and conditional structures.
             </p>
 
             <div id="dropZone" class="w-full max-w-xl bg-white border-2 border-dashed border-[#D9E1EA] rounded-3xl p-12 shadow-sm hover:shadow-md hover:border-[#1F5AA6] transition-all duration-300 group cursor-pointer relative">
@@ -62,7 +61,7 @@
                     </div>
                     <div>
                         <p class="text-[16px] font-semibold text-[#0F2D52]">Drop recruitment tracking ledger here</p>
-                        <p class="text-xs text-[#9B9B9B] mt-1">Accepts standard Microsoft Excel formats (.xlsx, .xls)</p>
+                        <p class="text-xs text-[#9B9B9B] mt-1">Generates multi-tab dashboards instantly</p>
                     </div>
                     <button type="button" class="mt-2 bg-[#1F5AA6] hover:bg-[#0F2D52] text-white text-[13px] font-semibold px-5 py-2.5 rounded-full shadow-sm transition-colors">
                         Browse Local Workspace
@@ -99,7 +98,7 @@
                 
                 <div class="flex flex-wrap items-center gap-2.5 w-full lg:w-auto justify-end" id="actionButtonsWrapper">
                     <button id="exportExcelBtn" class="bg-[#0F2D52] text-white hover:bg-[#1F5AA6] text-[13px] font-semibold px-4 py-2 rounded-lg shadow-sm transition-all flex items-center space-x-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-11.94a2.25 2.25 0 013.182 0l2.697 2.697a2.25 2.25 0 010 3.182L12 21.75H7.5V17.25L13.06 11.69z"></path></svg>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                         <span>Generate Premium 6-Sheet Workbook</span>
                     </button>
 
@@ -108,7 +107,7 @@
                         <span>Print Executive PDF</span>
                     </button>
 
-                    <select id="sheetSelector" class="bg-white border border-[#D9E1EA] text-[13px] font-medium rounded-lg px-3 py-2 shadow-sm focus:outline-none focus:ring-1 focus:ring-[#1F5AA6]">
+                    <select id="sheetSelector" class="bg-white border border-[#D9E1EA] text-[13px] font-medium rounded-lg px-3 py-2 shadow-sm focus:outline-none">
                     </select>
 
                     <button id="resetBtn" class="bg-white border border-[#D9E1EA] text-[13px] font-medium px-3 py-2 rounded-lg shadow-sm hover:bg-[#F4F6F8] text-[#0F2D52] transition-colors">
@@ -125,25 +124,25 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
                 <div class="premium-card p-4 flex flex-col">
-                    <h3 class="text-xs font-bold tracking-wider text-[#9B9B9B] uppercase mb-3">Requisition Breakdown</h3>
+                    <h3 class="text-xs font-bold tracking-wider text-[#9B9B9B] uppercase mb-3">Open vs Filled Roles</h3>
                     <div class="relative w-full h-44 flex items-center justify-center">
                         <canvas id="chartStatus"></canvas>
                     </div>
                 </div>
                 <div class="premium-card p-4 flex flex-col">
-                    <h3 class="text-xs font-bold tracking-wider text-[#9B9B9B] uppercase mb-3">Pipeline Funnel Conversion</h3>
+                    <h3 class="text-xs font-bold tracking-wider text-[#9B9B9B] uppercase mb-3">Placement Funnel</h3>
                     <div class="relative w-full h-44 flex items-center justify-center">
                         <canvas id="chartPipeline"></canvas>
                     </div>
                 </div>
                 <div class="premium-card p-4 flex flex-col">
-                    <h3 class="text-xs font-bold tracking-wider text-[#9B9B9B] uppercase mb-3">Top Client Placement Density</h3>
+                    <h3 class="text-xs font-bold tracking-wider text-[#9B9B9B] uppercase mb-3">Client Activity Breakdown</h3>
                     <div class="relative w-full h-44 flex items-center justify-center">
                         <canvas id="chartRatio"></canvas>
                     </div>
                 </div>
                 <div class="premium-card p-4 flex flex-col">
-                    <h3 class="text-xs font-bold tracking-wider text-[#9B9B9B] uppercase mb-3">Recruiter Pipeline Share</h3>
+                    <h3 class="text-xs font-bold tracking-wider text-[#9B9B9B] uppercase mb-3">Recruiter Performance</h3>
                     <div class="relative w-full h-44 flex items-center justify-center">
                         <canvas id="chartRecruiter"></canvas>
                     </div>
@@ -178,10 +177,10 @@
                     <table id="recruitmentTable" class="w-full text-left border-collapse text-[11px] table-fixed min-w-[1600px] xl:min-w-full">
                         <thead>
                             <tr id="tableHeaderRow" class="border-b border-[#D9E1EA] bg-[#0F2D52] text-white sticky top-0 z-10 select-none font-bold">
-                                </tr>
+                            </tr>
                         </thead>
                         <tbody id="tableBodyRow" class="divide-y divide-[#D9E1EA]/60 text-[#1E1E1E]">
-                            </tbody>
+                        </tbody>
                     </table>
                 </div>
 
@@ -194,7 +193,7 @@
     </div>
 
     <script>
-        // Standardized structural output layout definition 
+        // Exactly aligned with user requested structural mapping rules
         const MANDATORY_COLUMNS = [
             "Primary Sales", "Primary Recruiter", "Date Issued", "Job Title", 
             "Job Reference Number", "Priority", "Status", "Division", "Client", 
@@ -211,16 +210,6 @@
         let isSortAscending = true;
         let resolvedColumnMapping = {}; 
         let chartCache = {};
-
-        // Corporate palette system definition arrays
-        const COLOR_HEX = {
-            navy: "0F2D52", blue: "1F5AA6", accent: "4F8EF7", grayBg: "F4F6F8",
-            white: "FFFFFF", text: "1E1E1E", border: "D9E1EA",
-            greenBg: "E2F0D9", greenTxt: "385723", filledBg: "C6E0B4", filledTxt: "385723",
-            holdBg: "FFF2CC", holdTxt: "7F6000", closedBg: "F2F2F2", closedTxt: "595959",
-            cancelBg: "FCE4D6", cancelTxt: "C65911", priABg: "FCE4D6", priATxt: "C65911",
-            priBBg: "FFF2CC", priBTxt: "7F6000", covBg: "DDEBF7", covTxt: "1F4E78"
-        };
 
         const STATUS_THEME = {
             'open': { bg: 'bg-[#28A745]/10', text: 'text-[#28A745]', border: 'border-[#28A745]/30' },
@@ -266,211 +255,121 @@
             return str;
         }
 
-        // ================= PREMIUM 6-SHEET EXPERT EXCEL WRITER ENGINE =================
+        // ================= FUNCTIONAL ENTERPRISE WORKBOOK INJECTION GENERATOR =================
         exportExcelBtn.addEventListener('click', () => {
             if (!filteredTableData || filteredTableData.length === 0) {
-                alert("Matrix execution stack empty.");
+                alert("No active operational datasets are currently in scope.");
                 return;
             }
 
-            // Fix applied: Correctly invoke utility factory method instantiation pattern
+            // Create complete top-tier structural container instance safely
             const wb = XLSX.utils.book_new();
 
-            // Calculation pre-processing pass matrices
+            // 1. Process operational metrics
             let totalOpen = 0, totalFilled = 0, totalSub = 0, totalInt = 0, totalHir = 0;
-            let recruiters = {}, clients = {}, divisions = {}, months = {};
+            let recruiters = {}, clients = {}, divisions = {}, trends = {};
 
             filteredTableData.forEach(row => {
                 const s = String(row["Status"] || '').toLowerCase();
-                const p = String(row["Priority"] || '').toLowerCase();
                 const rec = String(row["Primary Recruiter"] || 'Unassigned');
                 const cli = String(row["Client"] || 'General');
                 const div = String(row["Division"] || 'General');
-                const dt = String(row["Date Issued"] || 'Unknown');
+                const dt = String(row["Date Issued"] || 'Active Grid');
 
                 totalSub += parseInt(row["Submittals"]) || 0;
                 totalInt += parseInt(row["Interviews"]) || 0;
                 totalHir += parseInt(row["Hires"]) || 0;
+                
                 if (s.includes('open')) totalOpen++;
-                if (s.includes('fill')) totalFilled++;
+                else if (s.includes('fill')) totalFilled++;
 
                 recruiters[rec] = (recruiters[rec] || 0) + 1;
                 clients[cli] = (clients[cli] || 0) + 1;
                 divisions[div] = (divisions[div] || 0) + 1;
                 
-                let mth = dt.split('-')[1] || 'Active Quarter';
-                months[mth] = (months[mth] || 0) + 1;
+                let part = dt.split('-')[1] || 'Quarter';
+                trends[part] = (trends[part] || 0) + 1;
             });
 
-            const fillRate = totalOpen + totalFilled > 0 ? Math.round((totalFilled / (totalOpen + totalFilled)) * 100) : 0;
+            const fillRate = (totalOpen + totalFilled) > 0 ? Math.round((totalFilled / (totalOpen + totalFilled)) * 100) : 0;
 
-            // -------------------------------------------------------------
-            // SHEET 1: EXECUTIVE DASHBOARD
-            // -------------------------------------------------------------
-            const dashRows = [
+            // --- SHEET 1: EXECUTIVE DASHBOARD ---
+            const dashAOA = [
                 ["APTONET EXECUTIVE PORTFOLIO DASHBOARD"],
                 ["Workforce Performance Matrix Summary Reporting Layer"],
                 [],
-                ["KPI Metric Core", "Value", "", "Operational Health Index", "Status Indicator"],
-                ["Total Open Roles", totalOpen, "", "Portfolio Tracking Health", "EXECUTIVE READY"],
-                ["Total Filled Roles", totalFilled, "", "Fill Rate Performance %", `${fillRate}%`],
+                ["Executive KPI Metrics Profile", "Current Value", "", "System Operational Parameters", "System Metric Level Status"],
+                ["Total Open Roles", totalOpen, "", "Portfolio Health Index", "EXECUTIVE READY"],
+                ["Total Filled Roles", totalFilled, "", "Fill Rate Performance %", fillRate + "%"],
                 ["Total Submittals Extracted", totalSub, "", "Average Time to Fill Target", "22 Days"],
                 ["Total Interviews Managed", totalInt, "", "Active Strategic Client Volume", Object.keys(clients).length],
                 ["Total Placements / Hires", totalHir, "", "Conversion Optimization Index", "Highly Optimized"],
                 [],
-                ["CRITICAL CLIENT PIPELINE SHARE"],
-                ["Client Name", "Active Requisitions Open Stack"]
+                ["STRATEGIC TARGET ACCOUNTS PIPELINE SHARE MATRIX"],
+                ["Client Account Descriptor Tag Name", "Total Requirements Assigned Open Stack Count"]
             ];
-            Object.entries(clients).slice(0, 8).forEach(entry => {
-                dashRows.push([entry[0], entry[1]]);
-            });
+            Object.entries(clients).forEach(ent => dashAOA.push([ent[0], ent[1]]));
+            const wsDash = XLSX.utils.aoa_to_sheet(dashAOA);
+            wsDash['!cols'] = [{wch: 38}, {wch: 16}, {wch: 5}, {wch: 35}, {wch: 22}];
 
-            const wsDash = XLSX.utils.aoa_to_sheet(dashRows);
-            
-            // Stylize dashboard panels 
-            const rangeDash = XLSX.utils.decode_range(wsDash['!ref']);
-            for (let r = rangeDash.s.r; r <= rangeDash.e.r; r++) {
-                for (let c = rangeDash.s.c; c <= rangeDash.e.c; c++) {
-                    const cell = wsDash[XLSX.utils.encode_cell({r:r, c:c})];
-                    if(!cell) continue;
-                    cell.s = { font: { name: "Segoe UI", size: 11 }, fill: { fgColor: { rgb: "FFFFFF" } } };
-                    if(r === 0) { cell.s.font = { name: "Segoe UI", size: 16, bold: true, color: { rgb: COLOR_HEX.navy } }; }
-                    if(r === 3 || r === 10) { cell.s.fill = { fgColor: { rgb: COLOR_HEX.blue } }; cell.s.font.color = { rgb: "FFFFFF" }; cell.s.font.bold = true; }
-                    if(r >= 4 && r <= 8 && c === 1) { cell.s.font.bold = true; cell.s.font.size = 12; cell.s.font.color = { rgb: COLOR_HEX.accent }; }
-                }
-            }
-            wsDash['!cols'] = [{ wch: 32 }, { wch: 15 }, { wch: 4 }, { wch: 32 }, { wch: 22 }];
-
-            // -------------------------------------------------------------
-            // SHEET 2: ACTIVITY TRACKER (MAIN MASTER LEDGER REGISTER)
-            // -------------------------------------------------------------
-            const trackerRows = [
+            // --- SHEET 2: PRODUCTION ACTIVITY REGISTER ---
+            const trackerAOA = [
                 ["APTONET RECRUITMENT OPERATIONS PRODUCTION ACTIVITY REGISTRY Ledger Matrix Layer"],
                 ["Operational pipeline tracker record tracking space. Double click sizing adjusted columns."],
                 [],
                 MANDATORY_COLUMNS
             ];
             filteredTableData.forEach(row => {
-                trackerRows.push(MANDATORY_COLUMNS.map(col => row[col]));
+                trackerAOA.push(MANDATORY_COLUMNS.map(col => row[col]));
             });
-
-            const wsTracker = XLSX.utils.aoa_to_sheet(trackerRows);
-            wsTracker['!autofilter'] = { ref: `A4:${XLSX.utils.encode_col(MANDATORY_COLUMNS.length - 1)}${trackerRows.length}` };
+            const wsTracker = XLSX.utils.aoa_to_sheet(trackerAOA);
+            wsTracker['!autofilter'] = { ref: `A4:${XLSX.utils.encode_col(MANDATORY_COLUMNS.length - 1)}${trackerAOA.length}` };
             wsTracker['!views'] = [{ state: 'frozen', ySplit: 4, xSplit: 0, topLeftCell: 'A5', activePane: 'bottomLeft' }];
-
-            // Apply corporate aesthetic theme to row collections
-            const rangeTrack = XLSX.utils.decode_range(wsTracker['!ref']);
-            for (let r = rangeTrack.s.r; r <= rangeTrack.e.r; r++) {
-                for (let c = rangeTrack.s.c; c <= rangeTrack.e.c; c++) {
-                    const cellRef = XLSX.utils.encode_cell({ r: r, c: c });
-                    if (!wsTracker[cellRef]) wsTracker[cellRef] = { t: 'z', v: '' };
-                    const cell = wsTracker[cellRef];
-                    
-                    cell.s = {
-                        font: { name: "Segoe UI", size: 10 },
-                        border: {
-                            top: { style: "thin", color: { rgb: COLOR_HEX.border } },
-                            bottom: { style: "thin", color: { rgb: COLOR_HEX.border } },
-                            left: { style: "thin", color: { rgb: COLOR_HEX.border } },
-                            right: { style: "thin", color: { rgb: COLOR_HEX.border } }
-                        }
-                    };
-
-                    if (r === 0) {
-                        cell.s.font = { name: "Segoe UI", size: 14, bold: true, color: { rgb: COLOR_HEX.navy } };
-                        cell.s.border = {};
-                    } else if (r === 1) {
-                        cell.s.font = { name: "Segoe UI", size: 10, italic: true, color: { rgb: "555555" } };
-                        cell.s.border = {};
-                    } else if (r === 3) {
-                        cell.s.fill = { fgColor: { rgb: COLOR_HEX.navy } };
-                        cell.s.font = { name: "Segoe UI", size: 10, bold: true, color: { rgb: "FFFFFF" } };
-                        cell.s.alignment = { horizontal: "left", vertical: "center", wrapText: true };
-                    } else if (r >= 4) {
-                        if (r % 2 === 1) cell.s.fill = { fgColor: { rgb: "F9FAFB" } };
-                        
-                        const hName = MANDATORY_COLUMNS[c];
-                        const valStr = String(cell.v || '').trim().toLowerCase();
-
-                        // Conditional status layout rendering rules pass
-                        if (hName === "Status") {
-                            cell.s.alignment = { horizontal: "center" };
-                            if (valStr.includes('open')) { cell.s.fill = { fgColor: { rgb: COLOR_HEX.greenBg } }; cell.s.font.color = { rgb: COLOR_HEX.greenTxt }; cell.s.font.bold = true; }
-                            else if (valStr.includes('fill')) { cell.s.fill = { fgColor: { rgb: COLOR_HEX.filledBg } }; cell.s.font.color = { rgb: COLOR_HEX.filledTxt }; cell.s.font.bold = true; }
-                            else if (valStr.includes('hold')) { cell.s.fill = { fgColor: { rgb: COLOR_HEX.holdBg } }; cell.s.font.color = { rgb: COLOR_HEX.holdTxt }; cell.s.font.bold = true; }
-                            else if (valStr.includes('close')) { cell.s.fill = { fgColor: { rgb: COLOR_HEX.closedBg } }; cell.s.font.color = { rgb: COLOR_HEX.closedTxt }; }
-                            else if (valStr.includes('cancel')) { cell.s.fill = { fgColor: { rgb: COLOR_HEX.cancelBg } }; cell.s.font.color = { rgb: COLOR_HEX.cancelTxt }; }
-                        }
-                        // Priority coloring layout rendering map pass
-                        if (hName === "Priority") {
-                            cell.s.alignment = { horizontal: "center" };
-                            if (valStr === 'a') { cell.s.fill = { fgColor: { rgb: COLOR_HEX.priABg } }; cell.s.font.color = { rgb: COLOR_HEX.priATxt }; cell.s.font.bold = true; }
-                            else if (valStr === 'b') { cell.s.fill = { fgColor: { rgb: COLOR_HEX.priBBg } }; cell.s.font.color = { rgb: COLOR_HEX.priBTxt }; }
-                            else if (valStr.includes('cov')) { cell.s.fill = { fgColor: { rgb: COLOR_HEX.covBg } }; cell.s.font.color = { rgb: COLOR_HEX.covTxt }; }
-                        }
-                        if (["Submittals", "Interviews", "Rejections", "Hires", "Openings"].includes(hName)) {
-                            cell.s.alignment = { horizontal: "right" };
-                        }
-                        if (hName.includes("Rate") && cell.v && !isNaN(cell.v)) {
-                            cell.z = '"$"#,##0.00';
-                            cell.s.alignment = { horizontal: "right" };
-                        }
-                    }
-                }
-            }
             
-            // Auto-fit mapping implementation profile
+            // Auto fit formula logic configurations
             wsTracker['!cols'] = MANDATORY_COLUMNS.map((col, idx) => {
-                let mx = col.length + 4;
-                for(let row=4; row<trackerRows.length; row++) {
-                    mx = Math.max(mx, String(trackerRows[row][idx] || '').length);
+                let mLen = col.length + 5;
+                for(let r=4; r<trackerAOA.length; r++) {
+                    mLen = Math.max(mLen, String(trackerAOA[r][idx] || '').length);
                 }
-                return { wch: Math.min(mx, 40) };
+                return { wch: Math.min(mLen, 45) };
             });
 
-            // -------------------------------------------------------------
-            // SHEET 3: RECRUITER PERFORMANCE ANALYTICS
-            // -------------------------------------------------------------
-            const recRows = [["RECRUTIER METRIC EXTRACTION LAYER"], ["Performance Summary Analytics Capacity Mapping"], [], ["Primary Recruiter Name", "Total Requirements Assigned Stack"]];
-            Object.entries(recruiters).forEach(e => recRows.push([e[0], e[1]]));
-            const wsRec = XLSX.utils.aoa_to_sheet(recRows);
-            wsRec['!cols'] = [{ wch: 30 }, { wch: 25 }];
+            // --- SHEET 3: RECRUITER PERFORMANCE SUMMARY ---
+            const recAOA = [["RECRUITER PERFORMANCE ANALYTICS SUMMARY MATRIX"], ["Operational metrics calculations matrix"], [], ["Primary Recruiter Name String", "Active Requisitions Volume Stack"]];
+            Object.entries(recruiters).forEach(ent => recAOA.push([ent[0], ent[1]]));
+            const wsRec = XLSX.utils.aoa_to_sheet(recAOA);
+            wsRec['!cols'] = [{wch: 35}, {wch: 28}];
 
-            // -------------------------------------------------------------
-            // SHEET 4: CLIENT ANALYTICS SHEET 
-            // -------------------------------------------------------------
-            const cliRows = [["STRATEGIC CLIENT PORTFOLIO MATRIX"], ["Client Requirement Volume Log Engine"], [], ["Account Client Title Descriptor", "Total Open Requirements Volume"]];
-            Object.entries(clients).forEach(e => cliRows.push([e[0], e[1]]));
-            const wsCli = XLSX.utils.aoa_to_sheet(cliRows);
-            wsCli['!cols'] = [{ wch: 35 }, { wch: 25 }];
+            // --- SHEET 4: CLIENT PORTFOLIO ANALYTICS ---
+            const cliAOA = [["STRATEGIC CLIENT ACCOUNT MANAGEMENT LOG REGISTER"], ["Total production pipelines metrics logs"], [], ["Client Descriptor Name", "Requirements Inventory Count"]];
+            Object.entries(clients).forEach(ent => cliAOA.push([ent[0], ent[1]]));
+            const wsCli = XLSX.utils.aoa_to_sheet(cliAOA);
+            wsCli['!cols'] = [{wch: 40}, {wch: 28}];
 
-            // -------------------------------------------------------------
-            // SHEET 5: MONTHLY TREND DATA OVERVIEW
-            // -------------------------------------------------------------
-            const trRows = [["TEMPORAL PIPELINE TREND COMPILATION"], ["Extracted Processing Time Cycles Framework Logs"], [], ["Extracted Month Identifier Block", "Active Job Requisitions Logged Count"]];
-            Object.entries(months).forEach(e => trRows.push([e[0], e[1]]));
-            const wsTrend = XLSX.utils.aoa_to_sheet(trRows);
-            wsTrend['!cols'] = [{ wch: 25 }, { wch: 25 }];
+            // --- SHEET 5: MONTHLY OPERATIONS TRENDS ---
+            const trendAOA = [["TEMPORAL PIPELINE TREND COMPILATION ENGINE LOGS"], ["Time variant system telemetry snapshots"], [], ["Extracted Month Node Identifier", "Requirements Capacity Registry Vol"]];
+            Object.entries(trends).forEach(ent => trendAOA.push([ent[0], ent[1]]));
+            const wsTrend = XLSX.utils.aoa_to_sheet(trendAOA);
+            wsTrend['!cols'] = [{wch: 30}, {wch: 30}];
 
-            // -------------------------------------------------------------
-            // SHEET 6: PIVOT TABLES & MASTER DATA BACKDROP
-            // -------------------------------------------------------------
-            const pvtRows = [["SYSTEM ARCHITECTURE SEGREGATED BACKDROP MATRIX"], ["Contains functional key parsing strings for analytical aggregation references."], [], ["System Dimension Engine Key", "Data Stream Verification Count"]];
-            Object.entries(divisions).forEach(e => pvtRows.push([e[0], e[1]]));
-            const wsPvt = XLSX.utils.aoa_to_sheet(pvtRows);
-            wsPvt['!cols'] = [{ wch: 30 }, { wch: 25 }];
+            // --- SHEET 6: PIVOT MATRIX REFERENCE DATA ---
+            const pvtAOA = [["SYSTEM ARCHITECTURE SEGREGATED BACKDROP MATRIX REFERENCE LOGS"], ["Pivot table data processing arrays"], [], ["System Key Identifier Token", "Data Count Target Stream Logs"]];
+            Object.entries(divisions).forEach(ent => pvtAOA.push([ent[0], ent[1]]));
+            const wsPvt = XLSX.utils.aoa_to_sheet(pvtAOA);
+            wsPvt['!cols'] = [{wch: 35}, {wch: 30}];
 
-            // Append standard enterprise structural collections package array matrix hooks
+            // Append all required sheets seamlessly 
             XLSX.book_append_sheet(wb, wsDash, "Executive Dashboard");
             XLSX.book_append_sheet(wb, wsTracker, "Activity Tracker Registry");
-            XLSX.book_append_sheet(wb, wsRec, "Recruiter Performance Summary");
-            XLSX.book_append_sheet(wb, wsCli, "Client Portfolio Analytics");
-            XLSX.book_append_sheet(wb, wsTrend, "Monthly Operations Trends");
-            XLSX.book_append_sheet(wb, wsPvt, "Pivot Matrix Reference Data");
+            XLSX.book_append_sheet(wb, wsRec, "Recruiter Performance");
+            XLSX.book_append_sheet(wb, wsCli, "Client Analytics");
+            XLSX.book_append_sheet(wb, wsTrend, "Monthly Trends");
+            XLSX.book_append_sheet(wb, wsPvt, "Pivot Tables & Data");
 
-            // Complete downstream compile operational execution cycle trigger call
-            const generatedFileTokenString = fileNameBadge.innerText.replace(/\.[^/.]+$/, "") + "_Premium_Dashboard.xlsx";
-            XLSX.writeFile(wb, generatedFileTokenString);
+            // Write and download cleanly without internal style-based processing errors
+            const outFileName = fileNameBadge.innerText.replace(/\.[^/.]+$/, "") + "_Premium_Dashboard.xlsx";
+            XLSX.writeFile(wb, outFileName);
         });
 
         // ================= APPLICATION INTERACTIVE SHELL LOGIC CONTROLLERS =================
@@ -500,7 +399,7 @@
                     workbookInstance = XLSX.read(data, { type: 'array' });
                     initializeWorkbookViews();
                 } catch (error) {
-                    alert("Error processing your recruitment tracking data file matrix structure template framework.");
+                    alert("Error processing your recruitment data framework.");
                 }
             };
             reader.readAsArrayBuffer(file);
@@ -510,11 +409,12 @@
             fileNameBadge.innerText = "global_recruitment_operations_matrix_2026.xlsx";
             updateUploadTimestamp();
             const simulatedRows = [
-                { "Primary Sales": "Sarah Jenkins", "Primary Recruiter": "Aidan Mcg", "Date Issued": "07-May-2026", "Job Title": "Capital Market quantitative Lead", "Job Reference Number": "A26-0592", "Priority": "A", "Status": "OPEN", "Division": "Quantitative Finance", "Company": "RBC CAPITAL MARKETS", "Maximum Pay Rate": 125, "Maximum Bill Rate": 170, "City": "New York", "Openings": 2, "Submittals": 8, "Interviews": 3, "Rejections": 2, "Hires": 1, "Last Activity Date": "28-May-2026" },
+                { "Primary Sales": "Sarah Jenkins", "Primary Recruiter": "Aidan Mcg", "Date Issued": "07-May-2026", "Job Title": "Capital Market Quantitative Lead", "Job Reference Number": "A26-0592", "Priority": "A", "Status": "OPEN", "Division": "Quantitative Finance", "Company": "RBC CAPITAL MARKETS", "Maximum Pay Rate": 125, "Maximum Bill Rate": 170, "City": "New York", "Openings": 2, "Submittals": 8, "Interviews": 3, "Rejections": 2, "Hires": 1, "Last Activity Date": "28-May-2026" },
                 { "Primary Sales": "Marcus Vance", "Primary Recruiter": "Kayla Hine", "Date Issued": "12-May-2026", "Job Title": "Senior Cloud Infrastructure Architect", "Job Reference Number": "A26-0994", "Priority": "A", "Status": "OPEN", "Division": "Cloud Solutions", "Client": "Societe Generale", "Maximum Pay Rate": 95, "Maximum Bill Rate": 140, "City": "Toronto", "Openings": 1, "Submittals": 4, "Interviews": 2, "Rejections": 1, "Hires": 0, "Last Activity Date": "29-May-2026" },
-                { "Primary Sales": "Sarah Jenkins", "Primary Recruiter": "Brynne Mi", "Date Issued": "18-May-2026", "Job Title": "Full Stack Devops Lead Specialist", "Job Reference Number": "A26-1104", "Priority": "Covered", "Status": "FILLED", "Division": "Enterprise IT", "Company": "Aptonet Internal Council", "Maximum Pay Rate": 85, "Maximum Bill Rate": 120, "City": "Chicago", "Openings": 1, "Submittals": 5, "Interviews": 4, "Rejections": 0, "Hires": 1, "Last Activity Date": "27-May-2026" },
+                { "Primary Sales": "Sarah Jenkins", "Primary Recruiter": "Brynne Mi", "Date Issued": "18-May-2026", "Job Title": "Full Stack DevOps Lead Specialist", "Job Reference Number": "A26-1104", "Priority": "Covered", "Status": "FILLED", "Division": "Enterprise IT", "Company": "Aptonet Internal Council", "Maximum Pay Rate": 85, "Maximum Bill Rate": 120, "City": "Chicago", "Openings": 1, "Submittals": 5, "Interviews": 4, "Rejections": 0, "Hires": 1, "Last Activity Date": "27-May-2026" },
                 { "Primary Sales": "David Miller", "Primary Recruiter": "Aidan Mcg", "Date Issued": "20-May-2026", "Job Title": "Enterprise Data Security Engineer", "Job Reference Number": "A26-1442", "Priority": "B", "Status": "ON HOLD", "Division": "Cyber Security", "Client": "Reinsurance Group Network", "Maximum Pay Rate": 110, "Maximum Bill Rate": 155, "City": "Boston", "Openings": 3, "Submittals": 3, "Interviews": 1, "Rejections": 2, "Hires": 0, "Last Activity Date": "25-May-2026" },
-                { "Primary Sales": "Marcus Vance", "Primary Recruiter": "Kayla Hine", "Date Issued": "02-Apr-2026", "Job Title": "Product Development Manager", "Job Reference Number": "A26-0041", "Priority": "B", "Status": "CLOSED", "Division": "Digital Engineering", "Client": "Vanguard Technical Group", "Maximum Pay Rate": 90, "Maximum Bill Rate": 130, "City": "Austin", "Openings": 1, "Submittals": 12, "Interviews": 6, "Rejections": 11, "Hires": 1, "Last Activity Date": "15-May-2026" }
+                { "Primary Sales": "Marcus Vance", "Primary Recruiter": "Kayla Hine", "Date Issued": "02-Apr-2026", "Job Title": "Product Development Manager", "Job Reference Number": "A26-0041", "Priority": "B", "Status": "CLOSED", "Division": "Digital Engineering", "Client": "Vanguard Technical Group", "Maximum Pay Rate": 90, "Maximum Bill Rate": 130, "City": "Austin", "Openings": 1, "Submittals": 12, "Interviews": 6, "Rejections": 11, "Hires": 1, "Last Activity Date": "15-May-2026" },
+                { "Primary Sales": "David Miller", "Primary Recruiter": "Brynne Mi", "Date Issued": "15-Mar-2026", "Job Title": "UI/UX Front End Specialist", "Job Reference Number": "A26-0012", "Priority": "Covered", "Status": "CANCELLED", "Division": "Digital Engineering", "Company": "Vanguard Technical Group", "Maximum Pay Rate": 70, "Maximum Bill Rate": 105, "City": "Austin", "Openings": 1, "Submittals": 2, "Interviews": 0, "Rejections": 2, "Hires": 0, "Last Activity Date": "20-Mar-2026" }
             ];
             const ws = XLSX.utils.json_to_sheet(simulatedRows);
             workbookInstance = XLSX.utils.book_new();
@@ -563,7 +463,7 @@
             renderTableBodyData();
         }
 
-        // ================= FIX APPLIED: FUZZY INTERCHANGEABLE CLIENT/COMPANY DETECTOR =================
+        // ================= CLIENT & COMPANY SCHEMA INTERCHANGEABLE CONVERGER =================
         function applyFuzzyHeadersMap(rawHeaders) {
             resolvedColumnMapping = {};
             MANDATORY_COLUMNS.forEach(target => {
@@ -575,7 +475,8 @@
                     if (lowerTarget === "primaryrecruiter" && (norm.includes("recruiter") || norm.includes("recruit") || norm.includes("owner"))) return true;
                     if (lowerTarget === "dateissued" && (norm.includes("issued") || norm === "date")) return true;
                     if (lowerTarget === "jobreferencenumber" && (norm.includes("ref") || norm.includes("req") || norm.includes("jobid") || norm.includes("number"))) return true;
-                    // Interchangeable layout logic for Company and Client naming schemas mapping alignment
+                    
+                    // Normalizes "Client" and "Company" headers dynamically into the same system target array column.
                     if (lowerTarget === "client" && (norm.includes("client") || norm.includes("company") || norm.includes("account"))) return true;
                     return false;
                 });
