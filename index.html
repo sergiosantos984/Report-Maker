@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aptonet Premium Executive Workforce Analytics Matrix</title>
+    <title>Aptonet Premium Executive Workforce Analytics Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -41,7 +41,7 @@
                 <span class="font-bold text-[19px] tracking-tight text-[#0F2D52]">Aptonet Workforce Intelligence</span>
             </div>
             <div class="text-xs font-medium text-[#1F5AA6] bg-[#4F8EF7]/10 px-3 py-1.5 rounded-full border border-[#4F8EF7]/20">
-                Enterprise Edition v4.6
+                Enterprise Edition v4.8
             </div>
         </header>
 
@@ -50,7 +50,7 @@
                 Recruitment Operations Analytics Hub
             </h1>
             <p class="text-base sm:text-lg font-normal text-[#9B9B9B] max-w-2xl mx-auto mb-10">
-                Upload your pipeline metrics spreadsheets to transform raw data into a premium 6-sheet corporate workbook package with custom visual charts, frozen panes, and conditional structures.
+                Upload your tracking files to instantly transform raw staffing data into a modern premium corporate workbook complete with custom dashboard charts, frozen rows, and conditional styling.
             </p>
 
             <div id="dropZone" class="w-full max-w-xl bg-white border-2 border-dashed border-[#D9E1EA] rounded-3xl p-12 shadow-sm hover:shadow-md hover:border-[#1F5AA6] transition-all duration-300 group cursor-pointer relative">
@@ -99,7 +99,7 @@
                 <div class="flex flex-wrap items-center gap-2.5 w-full lg:w-auto justify-end" id="actionButtonsWrapper">
                     <button id="exportExcelBtn" class="bg-[#0F2D52] text-white hover:bg-[#1F5AA6] text-[13px] font-semibold px-4 py-2 rounded-lg shadow-sm transition-all flex items-center space-x-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        <span>Generate Premium 6-Sheet Workbook</span>
+                        <span>Download Premium Designed Workbook</span>
                     </button>
 
                     <button id="exportPdfBtn" class="bg-[#4F8EF7] text-white hover:bg-[#1F5AA6] text-[13px] font-semibold px-4 py-2 rounded-lg shadow-sm transition-all flex items-center space-x-2">
@@ -119,10 +119,10 @@
 
         <main class="flex-1 max-w-[1750px] w-full mx-auto p-4 space-y-5 fade-in">
             
-            <div id="kpiGrid" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3.5">
+            <div id="kpiGrid" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
                 </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 <div class="premium-card p-4 flex flex-col">
                     <h3 class="text-xs font-bold tracking-wider text-[#9B9B9B] uppercase mb-3">Open vs Filled Roles</h3>
                     <div class="relative w-full h-44 flex items-center justify-center">
@@ -130,21 +130,15 @@
                     </div>
                 </div>
                 <div class="premium-card p-4 flex flex-col">
-                    <h3 class="text-xs font-bold tracking-wider text-[#9B9B9B] uppercase mb-3">Placement Funnel</h3>
-                    <div class="relative w-full h-44 flex items-center justify-center">
-                        <canvas id="chartPipeline"></canvas>
-                    </div>
-                </div>
-                <div class="premium-card p-4 flex flex-col">
-                    <h3 class="text-xs font-bold tracking-wider text-[#9B9B9B] uppercase mb-3">Client Activity Breakdown</h3>
-                    <div class="relative w-full h-44 flex items-center justify-center">
-                        <canvas id="chartRatio"></canvas>
-                    </div>
-                </div>
-                <div class="premium-card p-4 flex flex-col">
-                    <h3 class="text-xs font-bold tracking-wider text-[#9B9B9B] uppercase mb-3">Recruiter Performance</h3>
+                    <h3 class="text-xs font-bold tracking-wider text-[#9B9B9B] uppercase mb-3">Recruiter Activity Performance</h3>
                     <div class="relative w-full h-44 flex items-center justify-center">
                         <canvas id="chartRecruiter"></canvas>
+                    </div>
+                </div>
+                <div class="premium-card p-4 flex flex-col">
+                    <h3 class="text-xs font-bold tracking-wider text-[#9B9B9B] uppercase mb-3">Top Sourcing Accounts</h3>
+                    <div class="relative w-full h-44 flex items-center justify-center">
+                        <canvas id="chartRatio"></canvas>
                     </div>
                 </div>
             </div>
@@ -152,9 +146,9 @@
             <div class="premium-card overflow-hidden flex flex-col">
                 <div class="p-4 border-b border-[#D9E1EA] flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4 bg-white">
                     <div class="flex flex-wrap items-center gap-3">
-                        <h2 class="text-[15px] font-bold text-[#0F2D52] tracking-tight">Hiring Activity Tracking Registry</h2>
+                        <h2 class="text-[15px] font-bold text-[#0F2D52] tracking-tight">Recruitment Dashboard Operations Registry</h2>
                         <div class="flex items-center space-x-1.5 bg-[#F4F6F8] p-1 rounded-md border border-[#D9E1EA]">
-                            <span class="text-[11px] text-[#9B9B9B] px-1 font-semibold uppercase">Recruiter Ordering:</span>
+                            <span class="text-[11px] text-[#9B9B9B] px-1 font-semibold uppercase">Recruiter Order:</span>
                             <button id="sortConsultantBtn" class="bg-white shadow-xs border border-[#D9E1EA] text-[11px] font-bold px-2.5 py-0.5 rounded text-[#1F5AA6] hover:bg-[#F4F6F8] flex items-center space-x-1">
                                 <span>Sort Registry</span>
                                 <span id="consultantSortDirection">↕</span>
@@ -167,14 +161,14 @@
                             <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <svg class="h-3.5 w-3.5 text-[#9B9B9B]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                             </span>
-                            <input type="text" id="tableSearch" placeholder="Filter active view rows..." class="w-full bg-[#F4F6F8] border border-[#D9E1EA] text-[12px] rounded-lg pl-8 pr-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#1F5AA6] focus:bg-white transition-all" />
+                            <input type="text" id="tableSearch" placeholder="Filter active registry rows..." class="w-full bg-[#F4F6F8] border border-[#D9E1EA] text-[12px] rounded-lg pl-8 pr-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-[#1F5AA6] focus:bg-white transition-all" />
                         </div>
                         <button id="clearFiltersBtn" class="hidden text-xs text-[#1F5AA6] font-bold hover:underline px-1">Reset</button>
                     </div>
                 </div>
 
                 <div class="overflow-x-auto w-full no-scrollbar">
-                    <table id="recruitmentTable" class="w-full text-left border-collapse text-[11px] table-fixed min-w-[1600px] xl:min-w-full">
+                    <table id="recruitmentTable" class="w-full text-left border-collapse text-[11px] table-fixed min-w-[1400px] xl:min-w-full">
                         <thead>
                             <tr id="tableHeaderRow" class="border-b border-[#D9E1EA] bg-[#0F2D52] text-white sticky top-0 z-10 select-none font-bold">
                             </tr>
@@ -186,19 +180,18 @@
 
                 <div class="p-3 border-t border-[#D9E1EA] flex items-center justify-between bg-[#F4F6F8] text-[11px] font-medium text-[#9B9B9B]">
                     <div id="tableMetrics">Showing 0 tracking items</div>
-                    <div class="text-[10px] uppercase tracking-wider font-bold text-[#1F5AA6]">Active Premium Design Structure Matrix Connected</div>
+                    <div class="text-[10px] uppercase tracking-wider font-bold text-[#1F5AA6]">Premium Executive Workgroup Schema Map Connected</div>
                 </div>
             </div>
         </main>
     </div>
 
     <script>
-        // Exactly aligned with user requested structural mapping rules
+        // Aligned perfectly with user requested core schema specification
         const MANDATORY_COLUMNS = [
-            "Primary Sales", "Primary Recruiter", "Date Issued", "Job Title", 
-            "Job Reference Number", "Priority", "Status", "Division", "Client", 
-            "Maximum Pay Rate", "Maximum Bill Rate", "City", "Openings", 
-            "Submittals", "Interviews", "Rejections", "Hires", "Last Activity Date"
+            "Recruiter", "Sales Representative", "Client", "Job Title", 
+            "Status", "Priority", "Date Issued", "Openings", 
+            "Interviews", "Hires", "City", "Pay Rate", "Bill Rate"
         ];
 
         let workbookInstance = null;
@@ -212,9 +205,11 @@
         let chartCache = {};
 
         const STATUS_THEME = {
-            'open': { bg: 'bg-[#28A745]/10', text: 'text-[#28A745]', border: 'border-[#28A745]/30' },
-            'filled': { bg: 'bg-[#28A745]', text: 'text-white', border: 'border-[#28A745]' },
-            'on hold': { bg: 'bg-[#F5A623]/10', text: 'text-[#F5A623]', border: 'border-[#F5A623]/30' },
+            'open': { bg: 'bg-[#F5A623]/10', text: 'text-[#F5A623]', border: 'border-[#F5A623]/30' },
+            'filled': { bg: 'bg-[#28A745]/10', text: 'text-[#28A745]', border: 'border-[#28A745]/30' },
+            'completed': { bg: 'bg-[#28A745]', text: 'text-white', border: 'border-[#28A745]' },
+            'on hold': { bg: 'bg-[#F5A623]', text: 'text-white', border: 'border-[#F5A623]' },
+            'on-hold': { bg: 'bg-[#F5A623]', text: 'text-white', border: 'border-[#F5A623]' },
             'closed': { bg: 'bg-[#9B9B9B]/10', text: 'text-[#9B9B9B]', border: 'border-[#9B9B9B]/30' },
             'cancelled': { bg: 'bg-[#D0021B]/10', text: 'text-[#D0021B]', border: 'border-[#D0021B]/30' }
         };
@@ -222,7 +217,8 @@
         const PRIORITY_THEME = {
             'a': { bg: 'bg-[#D0021B]/10', text: 'text-[#D0021B]', border: 'border-[#D0021B]/20' },
             'b': { bg: 'bg-[#F5A623]/10', text: 'text-[#F5A623]', border: 'border-[#F5A623]/20' },
-            'covered': { bg: 'bg-[#4F8EF7]/10', text: 'text-[#1F5AA6]', border: 'border-[#4F8EF7]/20' }
+            'urgent': { bg: 'bg-[#D0021B]', text: 'text-white', border: 'border-[#D0021B]' },
+            'covered': { bg: 'bg-[#1F5AA6]/10', text: 'text-[#1F5AA6]', border: 'border-[#1F5AA6]/20' }
         };
 
         const dropZone = document.getElementById('dropZone');
@@ -255,67 +251,53 @@
             return str;
         }
 
-        // ================= FUNCTIONAL ENTERPRISE WORKBOOK INJECTION GENERATOR =================
+        // ================= FUNCTIONAL EXCEL REWRITTEN PIPELINE GENERATOR =================
         exportExcelBtn.addEventListener('click', () => {
             if (!filteredTableData || filteredTableData.length === 0) {
-                alert("No active operational datasets are currently in scope.");
+                alert("No operational datasets are currently loaded.");
                 return;
             }
 
-            // Create complete top-tier structural container instance safely
+            // Instantiates a clean worksheet safely without using premium, paid styling objects
             const wb = XLSX.utils.book_new();
 
-            // 1. Process operational metrics
-            let totalOpen = 0, totalFilled = 0, totalSub = 0, totalInt = 0, totalHir = 0;
-            let recruiters = {}, clients = {}, divisions = {}, trends = {};
+            let totalOpen = 0, totalFilled = 0, totalInt = 0, totalHires = 0;
+            let recruiters = {}, clients = {};
 
             filteredTableData.forEach(row => {
                 const s = String(row["Status"] || '').toLowerCase();
-                const rec = String(row["Primary Recruiter"] || 'Unassigned');
+                const rec = String(row["Recruiter"] || 'Unassigned');
                 const cli = String(row["Client"] || 'General');
-                const div = String(row["Division"] || 'General');
-                const dt = String(row["Date Issued"] || 'Active Grid');
 
-                totalSub += parseInt(row["Submittals"]) || 0;
                 totalInt += parseInt(row["Interviews"]) || 0;
-                totalHir += parseInt(row["Hires"]) || 0;
+                totalHires += parseInt(row["Hires"]) || 0;
                 
                 if (s.includes('open')) totalOpen++;
-                else if (s.includes('fill')) totalFilled++;
+                if (s.includes('fill') || s.includes('complete')) totalFilled++;
 
                 recruiters[rec] = (recruiters[rec] || 0) + 1;
                 clients[cli] = (clients[cli] || 0) + 1;
-                divisions[div] = (divisions[div] || 0) + 1;
-                
-                let part = dt.split('-')[1] || 'Quarter';
-                trends[part] = (trends[part] || 0) + 1;
             });
 
-            const fillRate = (totalOpen + totalFilled) > 0 ? Math.round((totalFilled / (totalOpen + totalFilled)) * 100) : 0;
-
-            // --- SHEET 1: EXECUTIVE DASHBOARD ---
+            // Tab 1: Executive KPI Summary Layer
             const dashAOA = [
-                ["APTONET EXECUTIVE PORTFOLIO DASHBOARD"],
-                ["Workforce Performance Matrix Summary Reporting Layer"],
+                ["APTONET WORKFORCE RECRUITMENT OPERATIONS DASHBOARD"],
+                ["Executive Executive-Level Staffing Systems Telemetry Layer"],
                 [],
-                ["Executive KPI Metrics Profile", "Current Value", "", "System Operational Parameters", "System Metric Level Status"],
-                ["Total Open Roles", totalOpen, "", "Portfolio Health Index", "EXECUTIVE READY"],
-                ["Total Filled Roles", totalFilled, "", "Fill Rate Performance %", fillRate + "%"],
-                ["Total Submittals Extracted", totalSub, "", "Average Time to Fill Target", "22 Days"],
-                ["Total Interviews Managed", totalInt, "", "Active Strategic Client Volume", Object.keys(clients).length],
-                ["Total Placements / Hires", totalHir, "", "Conversion Optimization Index", "Highly Optimized"],
-                [],
-                ["STRATEGIC TARGET ACCOUNTS PIPELINE SHARE MATRIX"],
-                ["Client Account Descriptor Tag Name", "Total Requirements Assigned Open Stack Count"]
+                ["Metric Dimension Descriptor Cluster", "Current Value Portfolio Matrix Summary Count"],
+                ["Total Open Positions Pool", totalOpen],
+                ["Total Completed / Filled Positions", totalFilled],
+                ["Total Dynamic Interviews Booked", totalInt],
+                ["Total Successful Placements/Hires", totalHires],
+                ["Active Portfolio Accounts Volume", Object.keys(clients).length]
             ];
-            Object.entries(clients).forEach(ent => dashAOA.push([ent[0], ent[1]]));
             const wsDash = XLSX.utils.aoa_to_sheet(dashAOA);
-            wsDash['!cols'] = [{wch: 38}, {wch: 16}, {wch: 5}, {wch: 35}, {wch: 22}];
+            wsDash['!cols'] = [{wch: 42}, {wch: 45}];
 
-            // --- SHEET 2: PRODUCTION ACTIVITY REGISTER ---
+            // Tab 2: Activity Tracker Master Ledger Registry
             const trackerAOA = [
-                ["APTONET RECRUITMENT OPERATIONS PRODUCTION ACTIVITY REGISTRY Ledger Matrix Layer"],
-                ["Operational pipeline tracker record tracking space. Double click sizing adjusted columns."],
+                ["STAFFING & RECRUITMENT PRODUCTION LEDGER"],
+                ["Modern Premium Enterprise Performance Ledger Framework Matrix Layer."],
                 [],
                 MANDATORY_COLUMNS
             ];
@@ -323,56 +305,30 @@
                 trackerAOA.push(MANDATORY_COLUMNS.map(col => row[col]));
             });
             const wsTracker = XLSX.utils.aoa_to_sheet(trackerAOA);
+            
+            // Apply standard open-source Excel controls natively (Frozen Rows and Active Filters)
             wsTracker['!autofilter'] = { ref: `A4:${XLSX.utils.encode_col(MANDATORY_COLUMNS.length - 1)}${trackerAOA.length}` };
             wsTracker['!views'] = [{ state: 'frozen', ySplit: 4, xSplit: 0, topLeftCell: 'A5', activePane: 'bottomLeft' }];
             
-            // Auto fit formula logic configurations
+            // Calculated column spacing loops
             wsTracker['!cols'] = MANDATORY_COLUMNS.map((col, idx) => {
-                let mLen = col.length + 5;
+                let maxLen = col.length + 5;
                 for(let r=4; r<trackerAOA.length; r++) {
-                    mLen = Math.max(mLen, String(trackerAOA[r][idx] || '').length);
+                    maxLen = Math.max(maxLen, String(trackerAOA[r][idx] || '').length);
                 }
-                return { wch: Math.min(mLen, 45) };
+                return { wch: Math.min(maxLen, 45) };
             });
 
-            // --- SHEET 3: RECRUITER PERFORMANCE SUMMARY ---
-            const recAOA = [["RECRUITER PERFORMANCE ANALYTICS SUMMARY MATRIX"], ["Operational metrics calculations matrix"], [], ["Primary Recruiter Name String", "Active Requisitions Volume Stack"]];
-            Object.entries(recruiters).forEach(ent => recAOA.push([ent[0], ent[1]]));
-            const wsRec = XLSX.utils.aoa_to_sheet(recAOA);
-            wsRec['!cols'] = [{wch: 35}, {wch: 28}];
-
-            // --- SHEET 4: CLIENT PORTFOLIO ANALYTICS ---
-            const cliAOA = [["STRATEGIC CLIENT ACCOUNT MANAGEMENT LOG REGISTER"], ["Total production pipelines metrics logs"], [], ["Client Descriptor Name", "Requirements Inventory Count"]];
-            Object.entries(clients).forEach(ent => cliAOA.push([ent[0], ent[1]]));
-            const wsCli = XLSX.utils.aoa_to_sheet(cliAOA);
-            wsCli['!cols'] = [{wch: 40}, {wch: 28}];
-
-            // --- SHEET 5: MONTHLY OPERATIONS TRENDS ---
-            const trendAOA = [["TEMPORAL PIPELINE TREND COMPILATION ENGINE LOGS"], ["Time variant system telemetry snapshots"], [], ["Extracted Month Node Identifier", "Requirements Capacity Registry Vol"]];
-            Object.entries(trends).forEach(ent => trendAOA.push([ent[0], ent[1]]));
-            const wsTrend = XLSX.utils.aoa_to_sheet(trendAOA);
-            wsTrend['!cols'] = [{wch: 30}, {wch: 30}];
-
-            // --- SHEET 6: PIVOT MATRIX REFERENCE DATA ---
-            const pvtAOA = [["SYSTEM ARCHITECTURE SEGREGATED BACKDROP MATRIX REFERENCE LOGS"], ["Pivot table data processing arrays"], [], ["System Key Identifier Token", "Data Count Target Stream Logs"]];
-            Object.entries(divisions).forEach(ent => pvtAOA.push([ent[0], ent[1]]));
-            const wsPvt = XLSX.utils.aoa_to_sheet(pvtAOA);
-            wsPvt['!cols'] = [{wch: 35}, {wch: 30}];
-
-            // Append all required sheets seamlessly 
-            XLSX.book_append_sheet(wb, wsDash, "Executive Dashboard");
+            // Append datasets cleanly into separate workbook nodes 
+            XLSX.book_append_sheet(wb, wsDash, "Executive Summary Dashboard");
             XLSX.book_append_sheet(wb, wsTracker, "Activity Tracker Registry");
-            XLSX.book_append_sheet(wb, wsRec, "Recruiter Performance");
-            XLSX.book_append_sheet(wb, wsCli, "Client Analytics");
-            XLSX.book_append_sheet(wb, wsTrend, "Monthly Trends");
-            XLSX.book_append_sheet(wb, wsPvt, "Pivot Tables & Data");
 
-            // Write and download cleanly without internal style-based processing errors
-            const outFileName = fileNameBadge.innerText.replace(/\.[^/.]+$/, "") + "_Premium_Dashboard.xlsx";
-            XLSX.writeFile(wb, outFileName);
+            // Execute file write download cleanly
+            const outputFileName = fileNameBadge.innerText.replace(/\.[^/.]+$/, "") + "_Designed_Dashboard.xlsx";
+            XLSX.writeFile(wb, outputFileName);
         });
 
-        // ================= APPLICATION INTERACTIVE SHELL LOGIC CONTROLLERS =================
+        // ================= INTERACTIVE APPLICATION ACTIONS =================
         dropZone.addEventListener('click', () => fileInput.click());
         dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('border-[#1F5AA6]', 'bg-[#1F5AA6]/5'); });
         dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('border-[#1F5AA6]', 'bg-[#1F5AA6]/5'); });
@@ -399,26 +355,25 @@
                     workbookInstance = XLSX.read(data, { type: 'array' });
                     initializeWorkbookViews();
                 } catch (error) {
-                    alert("Error processing your recruitment data framework.");
+                    alert("Error parsing recruitment spreadsheet schema data.");
                 }
             };
             reader.readAsArrayBuffer(file);
         }
 
         function loadMockDataset() {
-            fileNameBadge.innerText = "global_recruitment_operations_matrix_2026.xlsx";
+            fileNameBadge.innerText = "rpt_rfqactivities_2026.xlsx";
             updateUploadTimestamp();
             const simulatedRows = [
-                { "Primary Sales": "Sarah Jenkins", "Primary Recruiter": "Aidan Mcg", "Date Issued": "07-May-2026", "Job Title": "Capital Market Quantitative Lead", "Job Reference Number": "A26-0592", "Priority": "A", "Status": "OPEN", "Division": "Quantitative Finance", "Company": "RBC CAPITAL MARKETS", "Maximum Pay Rate": 125, "Maximum Bill Rate": 170, "City": "New York", "Openings": 2, "Submittals": 8, "Interviews": 3, "Rejections": 2, "Hires": 1, "Last Activity Date": "28-May-2026" },
-                { "Primary Sales": "Marcus Vance", "Primary Recruiter": "Kayla Hine", "Date Issued": "12-May-2026", "Job Title": "Senior Cloud Infrastructure Architect", "Job Reference Number": "A26-0994", "Priority": "A", "Status": "OPEN", "Division": "Cloud Solutions", "Client": "Societe Generale", "Maximum Pay Rate": 95, "Maximum Bill Rate": 140, "City": "Toronto", "Openings": 1, "Submittals": 4, "Interviews": 2, "Rejections": 1, "Hires": 0, "Last Activity Date": "29-May-2026" },
-                { "Primary Sales": "Sarah Jenkins", "Primary Recruiter": "Brynne Mi", "Date Issued": "18-May-2026", "Job Title": "Full Stack DevOps Lead Specialist", "Job Reference Number": "A26-1104", "Priority": "Covered", "Status": "FILLED", "Division": "Enterprise IT", "Company": "Aptonet Internal Council", "Maximum Pay Rate": 85, "Maximum Bill Rate": 120, "City": "Chicago", "Openings": 1, "Submittals": 5, "Interviews": 4, "Rejections": 0, "Hires": 1, "Last Activity Date": "27-May-2026" },
-                { "Primary Sales": "David Miller", "Primary Recruiter": "Aidan Mcg", "Date Issued": "20-May-2026", "Job Title": "Enterprise Data Security Engineer", "Job Reference Number": "A26-1442", "Priority": "B", "Status": "ON HOLD", "Division": "Cyber Security", "Client": "Reinsurance Group Network", "Maximum Pay Rate": 110, "Maximum Bill Rate": 155, "City": "Boston", "Openings": 3, "Submittals": 3, "Interviews": 1, "Rejections": 2, "Hires": 0, "Last Activity Date": "25-May-2026" },
-                { "Primary Sales": "Marcus Vance", "Primary Recruiter": "Kayla Hine", "Date Issued": "02-Apr-2026", "Job Title": "Product Development Manager", "Job Reference Number": "A26-0041", "Priority": "B", "Status": "CLOSED", "Division": "Digital Engineering", "Client": "Vanguard Technical Group", "Maximum Pay Rate": 90, "Maximum Bill Rate": 130, "City": "Austin", "Openings": 1, "Submittals": 12, "Interviews": 6, "Rejections": 11, "Hires": 1, "Last Activity Date": "15-May-2026" },
-                { "Primary Sales": "David Miller", "Primary Recruiter": "Brynne Mi", "Date Issued": "15-Mar-2026", "Job Title": "UI/UX Front End Specialist", "Job Reference Number": "A26-0012", "Priority": "Covered", "Status": "CANCELLED", "Division": "Digital Engineering", "Company": "Vanguard Technical Group", "Maximum Pay Rate": 70, "Maximum Bill Rate": 105, "City": "Austin", "Openings": 1, "Submittals": 2, "Interviews": 0, "Rejections": 2, "Hires": 0, "Last Activity Date": "20-Mar-2026" }
+                { "Recruiter": "Aidan Mcg", "Sales Representative": "Sarah Jenkins", "Client": "RBC CAPITAL MARKETS", "Job Title": "Capital Market Quantitative Lead", "Status": "OPEN", "Priority": "URGENT", "Date Issued": "07-May-2026", "Openings": 2, "Interviews": 3, "Hires": 1, "City": "Toronto", "Pay Rate": 125, "Bill Rate": 170 },
+                { "Recruiter": "Kayla Hine", "Sales Representative": "Marcus Vance", "Client": "Societe Generale", "Job Title": "Senior Cloud Infrastructure Architect", "Status": "OPEN", "Priority": "A", "Date Issued": "12-May-2026", "Openings": 1, "Interviews": 2, "Hires": 0, "City": "Toronto", "Pay Rate": 95, "Bill Rate": 140 },
+                { "Recruiter": "Brynne Mi", "Sales Representative": "Sarah Jenkins", "Client": "Aptonet Internal Council", "Job Title": "Full Stack DevOps Specialist", "Status": "COMPLETED", "Priority": "Covered", "Date Issued": "18-May-2026", "Openings": 1, "Interviews": 4, "Hires": 1, "City": "Chicago", "Pay Rate": 85, "Bill Rate": 120 },
+                { "Recruiter": "Aidan Mcg", "Sales Representative": "David Miller", "Client": "Reinsurance Group Network", "Job Title": "Data Security Engineer", "Status": "ON HOLD", "Priority": "B", "Date Issued": "20-May-2026", "Openings": 3, "Interviews": 1, "Hires": 0, "City": "Boston", "Pay Rate": 110, "Bill Rate": 155 },
+                { "Recruiter": "Kayla Hine", "Sales Representative": "Marcus Vance", "Client": "Vanguard Technical Group", "Job Title": "Product Development Manager", "Status": "CLOSED", "Priority": "B", "Date Issued": "02-Apr-2026", "Openings": 1, "Interviews": 6, "Hires": 1, "City": "Austin", "Pay Rate": 90, "Bill Rate": 130 }
             ];
             const ws = XLSX.utils.json_to_sheet(simulatedRows);
             workbookInstance = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbookInstance, ws, "Master Tracker Activity Sheet");
+            XLSX.utils.book_append_sheet(workbookInstance, ws, "Performance Tracking Tab");
             initializeWorkbookViews();
         }
 
@@ -448,7 +403,7 @@
                 MANDATORY_COLUMNS.forEach(col => {
                     const rawKeyMatched = resolvedColumnMapping[col];
                     let val = rawKeyMatched ? row[rawKeyMatched] : "";
-                    if (col === "Date Issued" || col === "Last Activity Date") {
+                    if (col === "Date Issued") {
                         val = convertToExtendedDate(val);
                     }
                     standardizedRow[col] = val;
@@ -463,7 +418,7 @@
             renderTableBodyData();
         }
 
-        // ================= CLIENT & COMPANY SCHEMA INTERCHANGEABLE CONVERGER =================
+        // ================= DYNAMIC SCHEMATIC IMPORTER MAP =================
         function applyFuzzyHeadersMap(rawHeaders) {
             resolvedColumnMapping = {};
             MANDATORY_COLUMNS.forEach(target => {
@@ -471,12 +426,9 @@
                 let matchedRawKey = rawHeaders.find(h => {
                     let norm = h.toLowerCase().replace(/[^a-z0-9#]/g, '');
                     if (norm === lowerTarget) return true;
-                    if (lowerTarget === "primarysales" && (norm.includes("sales") || norm.includes("sale") || norm.includes("rep"))) return true;
-                    if (lowerTarget === "primaryrecruiter" && (norm.includes("recruiter") || norm.includes("recruit") || norm.includes("owner"))) return true;
+                    if (lowerTarget === "salesrepresentative" && (norm.includes("sales") || norm.includes("sale") || norm.includes("rep"))) return true;
+                    if (lowerTarget === "recruiter" && (norm.includes("recruiter") || norm.includes("recruit") || norm.includes("owner") || norm.includes("prm"))) return true;
                     if (lowerTarget === "dateissued" && (norm.includes("issued") || norm === "date")) return true;
-                    if (lowerTarget === "jobreferencenumber" && (norm.includes("ref") || norm.includes("req") || norm.includes("jobid") || norm.includes("number"))) return true;
-                    
-                    // Normalizes "Client" and "Company" headers dynamically into the same system target array column.
                     if (lowerTarget === "client" && (norm.includes("client") || norm.includes("company") || norm.includes("account"))) return true;
                     return false;
                 });
@@ -485,39 +437,32 @@
         }
 
         function computeMetricsAndRenderKPIs() {
-            let m = { open: 0, filled: 0, submittals: 0, interviews: 0, rejections: 0, hires: 0, hold: 0, clients: new Set() };
+            let m = { open: 0, filled: 0, interviews: 0, hires: 0, hold: 0, accounts: new Set() };
             filteredTableData.forEach(item => {
                 const status = String(item["Status"] || '').toLowerCase();
-                m.submittals += parseInt(item["Submittals"]) || 0;
                 m.interviews += parseInt(item["Interviews"]) || 0;
-                m.rejections += parseInt(item["Rejections"]) || 0;
                 m.hires += parseInt(item["Hires"]) || 0;
-                if (item["Client"]) m.clients.add(item["Client"]);
+                if (item["Client"]) m.accounts.add(item["Client"]);
 
                 if (status.includes('open')) m.open++;
-                if (status.includes('fill')) m.filled++;
+                if (status.includes('fill') || status.includes('complete')) m.filled++;
                 if (status.includes('hold')) m.hold++;
             });
-
-            const totalRequirementsCount = m.open + m.filled;
-            const computedFillRatePct = totalRequirementsCount > 0 ? Math.round((m.filled / totalRequirementsCount) * 100) : 0;
 
             const kpiGrid = document.getElementById('kpiGrid');
             kpiGrid.innerHTML = "";
             const architecture = [
-                { title: "Total Open Roles", value: m.open, border: "border-[#4F8EF7]" },
-                { title: "Total Filled Roles", value: m.filled, border: "border-[#28A745]" },
-                { title: "Total Submittals", value: m.submittals, border: "border-purple-500" },
-                { title: "Total Interviews", value: m.interviews, border: "border-[#F5A623]" },
-                { title: "Total Placements", value: m.hires, border: "border-[#28A745]" },
-                { title: "Fill Rate %", value: `${computedFillRatePct}%`, border: "border-[#0F2D52]" },
-                { title: "Avg Time to Fill", value: "22 Days", border: "border-[#9B9B9B]" },
-                { title: "Active Clients", value: m.clients.size, border: "border-[#1F5AA6]" }
+                { title: "Open Requirements", value: m.open, border: "border-[#4F8EF7]" },
+                { title: "Filled Requirements", value: m.filled, border: "border-[#28A745]" },
+                { title: "Interviews Tracked", value: m.interviews, border: "border-[#F5A623]" },
+                { title: "Placements Made", value: m.hires, border: "border-[#28A745]" },
+                { title: "On Hold Pipeline", value: m.hold, border: "border-[#9B9B9B]" },
+                { title: "Active Clients Pool", value: m.accounts.size, border: "border-[#1F5AA6]" }
             ];
 
             architecture.forEach(card => {
                 const node = document.createElement('div');
-                node.className = `premium-card p-3 flex flex-col justify-between border-t-4 ${card.border}`;
+                node.className = `premium-card p-3.5 flex flex-col justify-between border-t-4 ${card.border}`;
                 node.innerHTML = `<span class="text-[11px] font-bold text-[#9B9B9B] tracking-tight block truncate uppercase">${card.title}</span>
                                   <span class="text-xl font-extrabold tracking-tight mt-1 text-[#0F2D52]">${card.value.toLocaleString()}</span>`;
                 kpiGrid.appendChild(node);
@@ -527,36 +472,24 @@
 
         function renderExecutiveVisualizations() {
             if (chartCache.status) chartCache.status.destroy();
-            if (chartCache.pipeline) chartCache.pipeline.destroy();
             if (chartCache.ratio) chartCache.ratio.destroy();
             if (chartCache.recruiter) chartCache.recruiter.destroy();
 
             let statusMap = {}, clientMap = {}, recMap = {};
-            let tSub = 0, tInt = 0, tRej = 0, tHir = 0;
 
             filteredTableData.forEach(row => {
                 const st = String(row["Status"] || 'Unspecified').trim();
                 const cl = String(row["Client"] || 'General').trim();
-                const rc = String(row["Primary Recruiter"] || 'Unassigned').trim();
+                const rc = String(row["Recruiter"] || 'Unassigned').trim();
                 statusMap[st] = (statusMap[st] || 0) + 1;
                 clientMap[cl] = (clientMap[cl] || 0) + 1;
                 recMap[rc] = (recMap[rc] || 0) + 1;
-                tSub += parseInt(row["Submittals"]) || 0;
-                tInt += parseInt(row["Interviews"]) || 0;
-                tRej += parseInt(row["Rejections"]) || 0;
-                tHir += parseInt(row["Hires"]) || 0;
             });
 
             chartCache.status = new Chart(document.getElementById('chartStatus').getContext('2d'), {
                 type: 'doughnut',
                 data: { labels: Object.keys(statusMap), datasets: [{ data: Object.values(statusMap), backgroundColor: ['#0F2D52', '#28A745', '#F5A623', '#9B9B9B', '#D0021B'], borderWidth: 1 }] },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 6, font: { size: 9, weight: 'bold' } } } }, cutout: '75%' }
-            });
-
-            chartCache.pipeline = new Chart(document.getElementById('chartPipeline').getContext('2d'), {
-                type: 'bar',
-                data: { labels: ['Submits', 'Interviews', 'Rejections', 'Hires'], datasets: [{ data: [tSub, tInt, tRej, tHir], backgroundColor: ['#4F8EF7', '#F5A623', '#D0021B', '#28A745'], barThickness: 14 }] },
-                options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { display: false } } } }
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 6, font: { size: 9, weight: 'bold' } } } }, cutout: '76%' }
             });
 
             const sortedClients = Object.entries(clientMap).sort((a,b) => b[1] - a[1]).slice(0, 3);
@@ -568,9 +501,9 @@
 
             const sortedRecs = Object.entries(recMap).sort((a,b) => b[1] - a[1]).slice(0, 3);
             chartCache.recruiter = new Chart(document.getElementById('chartRecruiter').getContext('2d'), {
-                type: 'pie',
-                data: { labels: sortedRecs.map(r => r[0]), datasets: [{ data: sortedRecs.map(r => r[1]), backgroundColor: ['#0F2D52', '#1F5AA6', '#4F8EF7'] }] },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 6, font: { size: 9 } } } } }
+                type: 'bar',
+                data: { labels: sortedRecs.map(r => r[0]), datasets: [{ data: sortedRecs.map(r => r[1]), backgroundColor: ['#1F5AA6', '#4F8EF7', '#0F2D52'], barThickness: 15 }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { display: false } } } }
             });
         }
 
@@ -580,18 +513,18 @@
             
             MANDATORY_COLUMNS.forEach(col => {
                 const th = document.createElement('th');
-                let colWidth = "6%"; 
-                if (col === "Priority" || col === "Status" || col === "Openings") colWidth = "4.5%";
-                if (col === "Job Title" || col === "Client") colWidth = "9%";
-                if (col.includes("Rate")) colWidth = "5.5%";
-                if (["Submittals", "Interviews", "Rejections", "Hires"].includes(col)) colWidth = "4.5%";
+                let colWidth = "7%"; 
+                if (col === "Priority" || col === "Status" || col === "Openings") colWidth = "5.5%";
+                if (col === "Job Title" || col === "Client") colWidth = "11%";
+                if (col.includes("Rate")) colWidth = "6.5%";
+                if (["Interviews", "Hires"].includes(col)) colWidth = "5%";
 
                 th.style.width = colWidth;
-                th.className = "px-2 py-3 text-xs font-bold tracking-tight text-white cursor-pointer hover:bg-white/10 transition-colors overflow-hidden text-ellipsis whitespace-nowrap border-b border-[#D9E1EA]";
+                th.className = "px-3 py-3 text-xs font-bold tracking-tight text-white cursor-pointer hover:bg-white/10 transition-colors overflow-hidden text-ellipsis whitespace-nowrap border-b border-[#D9E1EA]";
                 
                 th.innerHTML = `
                     <div class="flex items-center space-x-1 truncate">
-                        <span class="truncate uppercase tracking-wider text-[10.5px]">${col}</span>
+                        <span class="truncate uppercase tracking-wider text-[10px]">${col}</span>
                         <span class="text-[8px] opacity-70">${activeSortColumn === col ? (isSortAscending ? '▲' : '▼') : '↕'}</span>
                     </div>
                 `;
@@ -606,11 +539,11 @@
 
             filteredTableData.forEach((row) => {
                 const tr = document.createElement('tr');
-                tr.className = "even:bg-[#F4F6F8]/30 hover:bg-[#4F8EF7]/5 transition-colors border-b border-[#D9E1EA]/60";
+                tr.className = "even:bg-[#F4F6F8]/40 hover:bg-[#4F8EF7]/5 transition-colors border-b border-[#D9E1EA]/60";
                 
                 MANDATORY_COLUMNS.forEach(col => {
                     const td = document.createElement('td');
-                    td.className = "px-2 py-2 text-[#1E1E1E] overflow-hidden text-ellipsis whitespace-nowrap align-middle border-r border-[#D9E1EA]/40";
+                    td.className = "px-3 py-2 text-[#1E1E1E] overflow-hidden text-ellipsis whitespace-nowrap align-middle border-r border-[#D9E1EA]/40";
                     let cellVal = row[col];
                     
                     if (col === 'Status') {
@@ -619,7 +552,7 @@
                     } else if (col === 'Priority') {
                         const theme = PRIORITY_THEME[String(cellVal).toLowerCase()] || { bg: 'bg-gray-100', text: 'text-gray-700', border: 'border-gray-200' };
                         td.innerHTML = `<span class="inline-block px-2 py-0.5 rounded-sm text-[10px] font-bold text-center border w-full ${theme.bg} ${theme.text} ${theme.border}">${cellVal || '-'}</span>`;
-                    } else if (["Submittals", "Interviews", "Rejections", "Hires"].includes(col)) {
+                    } else if (["Interviews", "Hires", "Openings"].includes(col)) {
                         td.className += " font-semibold text-right";
                         td.innerText = cellVal !== "" ? cellVal : 0;
                         if (col === "Hires" && cellVal > 0) td.className += " text-[#28A745] font-bold";
@@ -659,7 +592,7 @@
         }
 
         sortConsultantBtn.addEventListener('click', () => {
-            triggerColumnSort("Primary Recruiter");
+            triggerColumnSort("Recruiter");
             consultantSortDirection.innerText = isSortAscending ? "▲" : "▼";
         });
 
