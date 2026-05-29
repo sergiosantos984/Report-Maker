@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aptonet Report & Executive Analytics Dashboard</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- SheetJS (XLSX) CDN -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -128,7 +125,6 @@
 </head>
 <body class="h-full">
 
-    <!-- Print Header Branding (Visible on PDF Export Only) -->
     <div id="printHeaderBranding" class="hidden">
         <div class="flex justify-between items-end">
             <div>
@@ -142,7 +138,6 @@
         </div>
     </div>
 
-    <!-- ================= LANDING PAGE VIEW ================= -->
     <div id="landingView" class="min-h-screen flex flex-col justify-between p-6 sm:p-12 transition-all duration-500">
         <header class="flex justify-between items-center max-w-7xl w-full mx-auto fade-in">
             <div class="flex items-center space-x-2.5">
@@ -191,7 +186,6 @@
     </div>
 
 
-    <!-- ================= DASHBOARD VIEW ================= -->
     <div id="dashboardView" class="hidden min-h-screen flex flex-col bg-[#F5F5F7]">
         <header class="sticky top-0 z-50 bg-[#F5F5F7]/80 backdrop-blur-md border-b border-b-black/[0.05] px-6 py-3">
             <div class="max-w-[1700px] mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -203,7 +197,6 @@
                         <span class="font-semibold text-sm tracking-tight">Aptonet Executive Dashboard</span>
                         <span class="text-xs px-2 py-0.5 rounded bg-black/[0.05] text-[#86868B]" id="fileNameBadge">Report.xlsx</span>
                     </div>
-                    <!-- UPLOAD TIMESTAMP INDICATOR -->
                     <div class="text-[11px] text-gray-500 font-medium pl-9" id="uploadTimestampBadge">
                         Last Updated: --
                     </div>
@@ -213,12 +206,10 @@
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5v2.25m0-13.5A2.25 2.25 0 009.75 3h4.5A2.25 2.25 0 0016.5 5.25V6m-10.5 6L12 3m0 0l5.25 9M12 3v13.5"></path></svg>
                         <span>Download Global Update File</span>
                     </button>
-                    <!-- EXCEL FORMAT EXPORT -->
                     <button id="exportExcelBtn" class="bg-emerald-700 text-white hover:bg-emerald-800 text-[12.5px] font-medium px-3.5 py-1.5 rounded-lg shadow-sm transition-all flex items-center space-x-1.5">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-11.94a2.25 2.25 0 013.182 0l2.697 2.697a2.25 2.25 0 010 3.182L12 21.75H7.5V17.25L13.06 11.69z"></path></svg>
                         <span>Export Excel Sheet</span>
                     </button>
-                    <!-- PDF FORMAT EXPORT -->
                     <button id="exportPdfBtn" class="bg-[#0071E3] text-white hover:bg-[#0077ED] text-[12.5px] font-medium px-3.5 py-1.5 rounded-lg shadow-sm transition-all flex items-center space-x-1.5">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"></path></svg>
                         <span>Export Page-Fit PDF</span>
@@ -234,12 +225,9 @@
 
         <main class="flex-1 max-w-[1700px] w-full mx-auto p-4 space-y-4 fade-in">
             
-            <!-- KPI CARD SYSTEM -->
             <div id="kpiGrid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
-                <!-- Injected Dynamically -->
-            </div>
+                </div>
 
-            <!-- ANALYTICS GRAPHS CHART MATRICES -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 <div class="bg-white rounded-xl p-4 border border-black/[0.04] shadow-sm flex flex-col">
                     <h3 class="text-[13px] font-semibold tracking-tight text-[#86868B] mb-2">Positions by Status</h3>
@@ -261,7 +249,6 @@
                 </div>
             </div>
 
-            <!-- COMPACT PAGE-FIT LEDGER TABLE COMPONENT -->
             <div class="bg-white rounded-xl border border-black/[0.04] shadow-sm overflow-hidden flex flex-col">
                 <div class="p-3 border-b border-black/[0.04] flex flex-col md:flex-row justify-between items-stretch md:items-center gap-3 bg-[#FAFAFC]">
                     <div class="flex flex-col sm:flex-row sm:items-center gap-2">
@@ -286,7 +273,6 @@
                     </div>
                 </div>
 
-                <!-- Strict Fit Engine Frame -->
                 <div class="overflow-x-auto w-full no-scrollbar">
                     <table id="recruitmentTable" class="w-full text-left border-collapse text-[10.5px] table-fixed min-w-[1500px] xl:min-w-full">
                         <thead>
@@ -306,7 +292,6 @@
         </main>
     </div>
 
-    <!-- ================= DASHBOARD CORE IMPLEMENTATION LOGIC ================= -->
     <script>
         // --- 20 CRITICAL GOVERNANCE COLUMNS PROFILE ---
         const MANDATORY_COLUMNS = [
@@ -342,447 +327,4 @@
         const fileInput = document.getElementById('fileInput');
         const landingView = document.getElementById('landingView');
         const dashboardView = document.getElementById('dashboardView');
-        const sheetSelector = document.getElementById('sheetSelector');
-        const resetBtn = document.getElementById('resetBtn');
-        const fileNameBadge = document.getElementById('fileNameBadge');
-        const uploadTimestampBadge = document.getElementById('uploadTimestampBadge');
-        const demoTrigger = document.getElementById('demoTrigger');
-        const sortConsultantBtn = document.getElementById('sortConsultantBtn');
-        const consultantSortDirection = document.getElementById('consultantSortDirection');
-        const exportPdfBtn = document.getElementById('exportPdfBtn');
-        const exportExcelBtn = document.getElementById('exportExcelBtn');
-        const saveGlobalDataBtn = document.getElementById('saveGlobalDataBtn');
-
-        let chartCache = {};
-
-        // --- AUTOMATIC LOCAL DATA PERSISTENCE LOOKUP ENGINE ---
-        window.addEventListener('DOMContentLoaded', () => {
-            fetch('data.json')
-                .then(response => {
-                    if (!response.ok) throw new Error('No pre-saved dataset found');
-                    return response.json();
-                })
-                .then(savedData => {
-                    fileNameBadge.innerText = savedData.fileName || "Live Tracking Ledger";
-                    if (savedData.timestamp) {
-                        uploadTimestampBadge.innerText = `Last Updated: ${savedData.timestamp}`;
-                    }
-                    cleanTableData = savedData.payload;
-                    filteredTableData = [...cleanTableData];
-                    
-                    landingView.classList.add('hidden');
-                    dashboardView.classList.remove('hidden');
-                    sheetSelector.innerHTML = `<option value="default">${savedData.sheetName || 'Master'}</option>`;
-                    
-                    computeMetricsAndRenderKPIs();
-                    renderExecutiveVisualizations();
-                    buildInteractiveTableHeadings();
-                    renderTableBodyData();
-                })
-                .catch(err => {
-                    console.log("Storage Mode: Standing by for spreadsheet file upload context.");
-                });
-        });
-
-        function updateUploadTimestamp() {
-            const currentDatetime = new Date().toLocaleString('en-US', { 
-                month: 'short', day: 'numeric', year: 'numeric', 
-                hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true 
-            });
-            uploadTimestampBadge.innerText = `Last Updated: ${currentDatetime}`;
-        }
-
-        saveGlobalDataBtn.addEventListener('click', () => {
-            const outputWrapper = {
-                fileName: fileNameBadge.innerText,
-                sheetName: currentSheetName,
-                timestamp: uploadTimestampBadge.innerText.replace('Last Updated: ', ''),
-                payload: cleanTableData
-            };
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(outputWrapper, null, 2));
-            const dlAnchor = document.createElement('a');
-            dlAnchor.setAttribute("href", dataStr);
-            dlAnchor.setAttribute("download", "data.json");
-            document.body.appendChild(dlAnchor);
-            dlAnchor.click();
-            dlAnchor.remove();
-        });
-
-        function convertToExtendedDate(rawVal) {
-            if (!rawVal) return "";
-            let str = String(rawVal).trim();
-            
-            if (!isNaN(str) && str.length > 2 && parseInt(str) > 40000) {
-                try {
-                    const dateObj = new Date((parseInt(str) - 25569) * 86400 * 1000);
-                    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-                    return `${dateObj.getDate()} of ${months[dateObj.getMonth()]}`;
-                } catch(e) {}
-            }
-
-            let parts = str.split(/[-/\s]+/);
-            if (parts.length >= 2) {
-                let day = parseInt(parts[0]);
-                let monthStr = parts[1];
-
-                if (isNaN(day)) { day = parseInt(parts[1]); monthStr = parts[0]; }
-
-                if (!isNaN(day) && monthStr) {
-                    let m = monthStr.toLowerCase();
-                    let monthMap = {
-                        jan: 'January', feb: 'February', mar: 'March', apr: 'April', 
-                        may: 'May', jun: 'June', jul: 'July', aug: 'August', 
-                        sep: 'September', oct: 'October', nov: 'November', dec: 'December'
-                    };
-                    let targetMonth = monthMap[m.substring(0, 3)];
-                    if (targetMonth) return `${day} of ${targetMonth}`;
-                }
-            }
-            return rawVal; 
-        }
-
-        // EXPORT TO PDF LOGIC
-        exportPdfBtn.addEventListener('click', () => {
-            document.getElementById('printDateStamp').innerText = `Generated: ${new Date().toLocaleString()}`;
-            window.print();
-        });
-
-        // EXPORT TO EXCEL LOGIC
-        exportExcelBtn.addEventListener('click', () => {
-            if (!filteredTableData || filteredTableData.length === 0) {
-                alert("No active rows to export.");
-                return;
-            }
-            
-            // Build explicit key rows maps with dynamic generated counts
-            const operationalExportRows = filteredTableData.map((row, index) => {
-                const map = {};
-                MANDATORY_COLUMNS.forEach(col => {
-                    if (col === "Number") {
-                        map[col] = index + 1;
-                    } else {
-                        map[col] = row[col];
-                    }
-                });
-                return map;
-            });
-
-            const ws = XLSX.utils.json_to_sheet(operationalExportRows);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Pipeline Export Data");
-            
-            // Generate clean filename matching context safely
-            const dynamicFilename = fileNameBadge.innerText.replace(/\.[^/.]+$/, "") + "_Filtered_Matrix.xlsx";
-            XLSX.writeFile(wb, dynamicFilename);
-        });
-
-        dropZone.addEventListener('click', () => fileInput.click());
-        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('border-[#0071E3]', 'bg-[#0071E3]/05'); });
-        dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('border-[#0071E3]', 'bg-[#0071E3]/05'); });
-        dropZone.addEventListener('drop', (e) => { e.preventDefault(); dropZone.classList.remove('border-[#0071E3]', 'bg-[#0071E3]/05'); if (e.dataTransfer.files.length) processSelectedFile(e.dataTransfer.files[0]); });
-        fileInput.addEventListener('change', (e) => { if (e.target.files.length) processSelectedFile(e.target.files[0]); });
-        demoTrigger.addEventListener('click', (e) => { e.stopPropagation(); loadMockDataset(); });
-        resetBtn.addEventListener('click', () => { dashboardView.classList.add('hidden'); landingView.classList.remove('hidden'); saveGlobalDataBtn.classList.add('hidden'); fileInput.value = ''; workbookInstance = null; });
-
-        function processSelectedFile(file) {
-            fileNameBadge.innerText = file.name;
-            updateUploadTimestamp();
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = new Uint8Array(e.target.result);
-                    workbookInstance = XLSX.read(data, { type: 'array' });
-                    saveGlobalDataBtn.classList.remove('hidden'); 
-                    initializeWorkbookViews();
-                } catch (error) {
-                    alert("Failed parsing target data grid asset matrix cleanly.");
-                }
-            };
-            reader.readAsArrayBuffer(file);
-        }
-
-        function loadMockDataset() {
-            fileNameBadge.innerText = "rpt_rfqactivities_2026.xlsx";
-            updateUploadTimestamp();
-            const simulatedRows = [
-                { "Prim. Sales": "John Doe", "Prm. Recruiter": "Aidan Mcg", "Date Issued": "7-May", "Job Title": "Capital Market Analyst", "Job Ref#": "26-05926", "Priority": "A", "Status": "OPEN", "Division": "Finance", "Client": "RBC CAPITAL MARKETS", "Maximum Pay Rate": 65, "Maximum Bill Rate": 90, "City": "Toronto", "Openings": 1, "Division of Prim. Sales": "Capital Markets", "Submittals": 2, "Interviews": 0, "Rejections": 0, "Hires": 0, "Last Activity Date": "27-May" },
-                { "Prim. Sales": "Jane Smith", "Prm. Recruiter": "Aidan Mcg", "Date Issued": "6-May", "Job Title": "DevOps Engineer", "Job Ref#": "26000B8C", "Priority": "A", "Status": "OPEN", "Division": "IT", "Client": "Societe Generale", "Maximum Pay Rate": 85, "Maximum Bill Rate": 120, "City": "Toronto", "Openings": 1, "Division of Prim. Sales": "Enterprise IT", "Submittals": 0, "Interviews": 0, "Rejections": 0, "Hires": 0, "Last Activity Date": "22-May" },
-                { "Prim. Sales": "John Doe", "Prm. Recruiter": "Brynne Mi", "Date Issued": "27-May", "Job Title": "Level 3 IT Support", "Job Ref#": "26-06954", "Priority": "A", "Status": "OPEN", "Division": "IT", "Client": "Aptonet Council", "Maximum Pay Rate": 45, "Maximum Bill Rate": 65, "City": "Blue Ash", "Openings": 1, "Division of Prim. Sales": "Public Sector", "Submittals": 4, "Interviews": 1, "Rejections": 0, "Hires": 1, "Last Activity Date": "28-May" },
-                { "Prim. Sales": "Bob Vance", "Prm. Recruiter": "Kayla Hine", "Date Issued": "20-May", "Job Title": "Software Engineer", "Job Ref#": "26-06617", "Priority": "Covered", "Status": "FILLED", "Division": "Engineering", "Client": "Reinsurance Group", "Maximum Pay Rate": 95, "Maximum Bill Rate": 135, "City": "Statement", "Openings": 4, "Division of Prim. Sales": "Insurance Tech", "Submittals": 2, "Interviews": 2, "Rejections": 0, "Hires": 1, "Last Activity Date": "21-May" }
-            ];
-            const ws = XLSX.utils.json_to_sheet(simulatedRows);
-            workbookInstance = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbookInstance, ws, "Master Performance Ledger");
-            saveGlobalDataBtn.classList.remove('hidden');
-            initializeWorkbookViews();
-        }
-
-        function initializeWorkbookViews() {
-            sheetSelector.innerHTML = "";
-            workbookInstance.SheetNames.forEach((name) => {
-                const opt = document.createElement('option');
-                opt.value = name; opt.innerText = name;
-                sheetSelector.appendChild(opt);
-            });
-            currentSheetName = workbookInstance.SheetNames[0];
-            sheetSelector.addEventListener('change', (e) => { currentSheetName = e.target.value; parseAndRenderActiveSheet(); });
-            landingView.classList.add('hidden');
-            dashboardView.classList.remove('hidden');
-            parseAndRenderActiveSheet();
-        }
-
-        function parseAndRenderActiveSheet() {
-            const worksheet = workbookInstance.Sheets[currentSheetName];
-            const rawSheetData = XLSX.utils.sheet_to_json(worksheet, { defval: "" });
-            
-            if (rawSheetData.length === 0) return;
-
-            applyFuzzyHeadersMap(Object.keys(rawSheetData[0] || {}));
-
-            cleanTableData = rawSheetData.map(row => {
-                const standardizedRow = {};
-                MANDATORY_COLUMNS.forEach(col => {
-                    if (col === "Number") {
-                        standardizedRow[col] = ""; 
-                        return;
-                    }
-                    const rawKeyMatched = resolvedColumnMapping[col];
-                    let val = rawKeyMatched ? row[rawKeyMatched] : "";
-                    
-                    if (col === "Date Issued" || col === "Last Activity Date") {
-                        val = convertToExtendedDate(val);
-                    }
-                    standardizedRow[col] = val;
-                });
-                return standardizedRow;
-            });
-
-            filteredTableData = [...cleanTableData];
-            computeMetricsAndRenderKPIs();
-            renderExecutiveVisualizations();
-            buildInteractiveTableHeadings();
-            renderTableBodyData();
-        }
-
-        function applyFuzzyHeadersMap(rawHeaders) {
-            resolvedColumnMapping = {};
-            MANDATORY_COLUMNS.forEach(target => {
-                if (target === "Number") return;
-                
-                let lowerTarget = target.toLowerCase().replace(/[^a-z0-9#]/g, '');
-                
-                let matchedRawKey = rawHeaders.find(h => {
-                    let norm = h.toLowerCase().replace(/[^a-z0-9#]/g, '');
-                    
-                    if (norm === lowerTarget) return true;
-                    if (lowerTarget === "primsales" && (norm.includes("sales") || norm.includes("sale"))) return true;
-                    if (lowerTarget === "prmrecruiter" && (norm.includes("recruiter") || norm.includes("recruit") || norm.includes("owner"))) return true;
-                    if (lowerTarget === "dateissued" && (norm.includes("issued") || norm === "date")) return true;
-                    if (lowerTarget === "jobref#" && (norm.includes("ref") || norm.includes("req") || norm.includes("jobid") || norm.includes("number"))) return true;
-                    return false;
-                });
-
-                resolvedColumnMapping[target] = matchedRawKey || null;
-            });
-        }
-
-        function computeMetricsAndRenderKPIs() {
-            let metrics = { open: 0, filled: 0, submittals: 0, interviews: 0, rejections: 0, hires: 0, hold: 0 };
-
-            filteredTableData.forEach(item => {
-                const status = String(item["Status"] || '').toLowerCase();
-                metrics.submittals += parseInt(item["Submittals"]) || 0;
-                metrics.interviews += parseInt(item["Interviews"]) || 0;
-                metrics.rejections += parseInt(item["Rejections"]) || 0;
-                metrics.hires += parseInt(item["Hires"]) || 0;
-
-                if (status.includes('open')) metrics.open++;
-                if (status.includes('fill')) metrics.filled++;
-                if (status.includes('hold')) metrics.hold++;
-            });
-
-            const kpiGrid = document.getElementById('kpiGrid');
-            kpiGrid.innerHTML = "";
-            const structures = [
-                { title: "Open Requirements", value: metrics.open, color: "text-[#0071E3]" },
-                { title: "Filled Requirements", value: metrics.filled, color: "text-slate-700" },
-                { title: "Total Submissions", value: metrics.submittals, color: "text-purple-600" },
-                { title: "Interviews Booked", value: metrics.interviews, color: "text-amber-500" },
-                { title: "Rejections Tracked", value: metrics.rejections, color: "text-rose-600" },
-                { title: "Placements Made", value: metrics.hires, color: "text-emerald-600" },
-                { title: "On Hold", value: metrics.hold, color: "text-gray-500" }
-            ];
-
-            structures.forEach(card => {
-                const node = document.createElement('div');
-                node.className = "bg-white rounded-xl p-3 border border-black/[0.04] flex flex-col justify-between shadow-sm";
-                node.innerHTML = `<span class="text-[11px] font-medium text-[#86868B] tracking-tight block truncate">${card.title}</span>
-                                  <span class="text-lg font-bold tracking-tight mt-1 ${card.color}">${card.value.toLocaleString()}</span>`;
-                kpiGrid.appendChild(node);
-            });
-            document.getElementById('tableMetrics').innerText = `Displaying ${filteredTableData.length} records`;
-        }
-
-        function renderExecutiveVisualizations() {
-            if (chartCache.status) chartCache.status.destroy();
-            if (chartCache.pipeline) chartCache.pipeline.destroy();
-            if (chartCache.ratio) chartCache.ratio.destroy();
-
-            let statusMap = {}, clientMap = {};
-            let tSub = 0, tInt = 0, tRej = 0, tHir = 0;
-
-            filteredTableData.forEach(row => {
-                const st = String(row["Status"] || 'Unspecified').trim();
-                const cl = String(row["Client"] || 'General').trim();
-                statusMap[st] = (statusMap[st] || 0) + 1;
-                clientMap[cl] = (clientMap[cl] || 0) + 1;
-                tSub += parseInt(row["Submittals"]) || 0;
-                tInt += parseInt(row["Interviews"]) || 0;
-                tRej += parseInt(row["Rejections"]) || 0;
-                tHir += parseInt(row["Hires"]) || 0;
-            });
-
-            chartCache.status = new Chart(document.getElementById('chartStatus').getContext('2d'), {
-                type: 'doughnut',
-                data: { labels: Object.keys(statusMap), datasets: [{ data: Object.values(statusMap), backgroundColor: ['#0071E3', '#34C759', '#FF9500', '#AF52DE'], borderWidth: 1.5 }] },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 6, font: { size: 9 } } } }, cutout: '78%' }
-            });
-
-            chartCache.pipeline = new Chart(document.getElementById('chartPipeline').getContext('2d'), {
-                type: 'bar',
-                data: { labels: ['Submits', 'Interviews', 'Rejections', 'Hires'], datasets: [{ data: [tSub, tInt, tRej, tHir], backgroundColor: ['#AF52DE', '#FF9500', '#FF3B30', '#34C759'], barThickness: 12 }] },
-                options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { display: false } } } }
-            });
-
-            const sortedClients = Object.entries(clientMap).sort((a,b) => b[1] - a[1]).slice(0, 3);
-            chartCache.ratio = new Chart(document.getElementById('chartRatio').getContext('2d'), {
-                type: 'polarArea',
-                data: { labels: sortedClients.map(c => c[0]), datasets: [{ data: sortedClients.map(c => c[1]), backgroundColor: ['rgba(0,113,227,0.65)', 'rgba(52,199,89,0.65)', 'rgba(255,149,0,0.65)'] }] },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 6, font: { size: 9 } } } }, scales: { r: { grid: { display: false }, ticks: { display: false } } } }
-            });
-        }
-
-        function buildInteractiveTableHeadings() {
-            const headerRow = document.getElementById('tableHeaderRow');
-            headerRow.innerHTML = "";
-            
-            MANDATORY_COLUMNS.forEach(col => {
-                const th = document.createElement('th');
-                
-                let colWidth = "5.5%"; 
-                if (col === "Number") colWidth = "3%";
-                if (col === "Priority" || col === "Status" || col === "City" || col === "Openings") colWidth = "4.2%";
-                if (col === "Job Title" || col === "Client") colWidth = "8.5%";
-                if (col.includes("Rate")) colWidth = "4.8%";
-                if (["Submittals", "Interviews", "Rejections", "Hires"].includes(col)) colWidth = "3.8%";
-
-                th.style.width = colWidth;
-                th.className = "px-1.5 py-2 font-semibold tracking-tight cursor-pointer hover:bg-black/[0.03] transition-colors overflow-hidden text-ellipsis whitespace-nowrap border-b border-slate-200";
-                
-                let textStyle = 'text-[#6E6E73]';
-                if (["Submittals", "Interviews", "Rejections", "Hires"].includes(col)) {
-                    textStyle = 'text-slate-900 font-bold bg-amber-100/40 justify-center';
-                    th.className += " border-x border-slate-300/40";
-                } else if (col === "Prm. Recruiter") {
-                    textStyle = 'text-[#0071E3]';
-                }
-
-                th.innerHTML = `
-                    <div class="flex items-center space-x-0.5 truncate ${textStyle}">
-                        <span class="truncate">${col}</span>
-                        <span class="text-[7px] text-gray-400 font-normal">${activeSortColumn === col ? (isSortAscending ? '▲' : '▼') : '↕'}</span>
-                    </div>
-                `;
-                th.addEventListener('click', () => triggerColumnSort(col));
-                headerRow.appendChild(th);
-            });
-        }
-
-        function renderTableBodyData() {
-            const tbody = document.getElementById('tableBodyRow');
-            tbody.innerHTML = "";
-
-            filteredTableData.forEach((row, index) => {
-                const tr = document.createElement('tr');
-                tr.className = "even:bg-slate-50/30 hover:bg-slate-100/40 transition-colors border-b border-slate-200/40";
-                
-                MANDATORY_COLUMNS.forEach(col => {
-                    const td = document.createElement('td');
-                    td.className = "px-1.5 py-1.5 text-[#1D1D1F] overflow-hidden text-ellipsis whitespace-nowrap align-middle border-r border-slate-100";
-                    
-                    let cellVal = row[col];
-                    
-                    if (col === "Number") {
-                        td.className += " text-center text-gray-400 font-medium bg-slate-50/30";
-                        td.innerText = index + 1;
-                        tr.appendChild(td);
-                        return;
-                    }
-
-                    if (col === 'Status') {
-                        const theme = STATUS_THEME[String(cellVal).toLowerCase()] || { bg: 'bg-gray-50', text: 'text-gray-600', border: 'border-gray-200' };
-                        td.innerHTML = `<span class="inline-block px-1 rounded text-[9.5px] font-medium border ${theme.bg} ${theme.text} ${theme.border}">${cellVal || 'N/A'}</span>`;
-                    } else if (col === "Submittals") {
-                        td.className += " bg-amber-50/10 font-semibold text-center text-purple-700 border-x border-slate-200/30";
-                        td.innerText = cellVal !== "" ? cellVal : 0;
-                    } else if (col === "Interviews") {
-                        td.className += " bg-amber-50/10 font-semibold text-center text-amber-600 border-x border-slate-200/30";
-                        td.innerText = cellVal !== "" ? cellVal : 0;
-                    } else if (col === "Rejections") {
-                        td.className += " bg-amber-50/10 font-medium text-center text-rose-600 border-x border-slate-200/30";
-                        td.innerText = cellVal !== "" ? cellVal : 0;
-                    } else if (col === "Hires") {
-                        td.className += " bg-amber-100/10 font-bold text-center text-emerald-700 border-x border-slate-200/30";
-                        td.innerHTML = cellVal > 0 ? `<span class="bg-emerald-100 text-emerald-800 px-1 rounded">${cellVal}</span>` : "0";
-                    } else if (col.includes('Rate') && cellVal !== "") {
-                        td.innerText = isNaN(cellVal) ? cellVal : `$${parseFloat(cellVal).toFixed(2)}`;
-                    } else {
-                        td.innerText = cellVal !== null && cellVal !== undefined ? cellVal : "";
-                    }
-                    tr.appendChild(td);
-                });
-                tbody.appendChild(tr);
-            });
-        }
-
-        document.getElementById('tableSearch').addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
-            const clearBtn = document.getElementById('clearFiltersBtn');
-            if (query.length > 0) clearBtn.classList.remove('hidden'); else clearBtn.classList.add('hidden');
-
-            filteredTableData = cleanTableData.filter(row => Object.values(row).some(val => String(val).toLowerCase().includes(query)));
-            computeMetricsAndRenderKPIs();
-            renderTableBodyData();
-        });
-
-        document.getElementById('clearFiltersBtn').addEventListener('click', () => {
-            document.getElementById('tableSearch').value = "";
-            document.getElementById('clearFiltersBtn').classList.add('hidden');
-            filteredTableData = [...cleanTableData];
-            computeMetricsAndRenderKPIs();
-            renderTableBodyData();
-        });
-
-        function triggerColumnSort(columnName) {
-            if (activeSortColumn === columnName) isSortAscending = !isSortAscending; else { activeSortColumn = columnName; isSortAscending = true; }
-            executeSortSequence(columnName);
-        }
-
-        sortConsultantBtn.addEventListener('click', () => {
-            triggerColumnSort("Prm. Recruiter");
-            consultantSortDirection.innerText = isSortAscending ? "▲" : "▼";
-        });
-
-        function executeSortSequence(columnName) {
-            filteredTableData.sort((a, b) => {
-                let vA = a[columnName]; let vB = b[columnName];
-                if (!isNaN(vA) && !isNaN(vB) && vA !== "" && vB !== "") return isSortAscending ? vA - vB : vB - vA;
-                vA = String(vA).toLowerCase().trim(); vB = String(vB).toLowerCase().trim();
-                return isSortAscending ? vA.localeCompare(vB) : vB.localeCompare(vA);
-            });
-            buildInteractiveTableHeadings();
-            renderTableBodyData();
-        }
-    </script>
-</body>
-</html>
+        const sheetSelector = document.getElementById('
