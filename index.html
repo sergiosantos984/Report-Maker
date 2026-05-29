@@ -49,7 +49,7 @@
             #sortConsultantBtn, 
             #tableSearch, 
             #clearFiltersBtn,
-            #exportPdfBtn,
+            #actionButtonsWrapper,
             #saveGlobalDataBtn,
             .bg-slate-200\/60 {
                 display: none !important;
@@ -152,7 +152,7 @@
                 <span class="font-semibold text-[17px] tracking-tight text-[#1D1D1F]">Aptonet</span>
             </div>
             <div class="text-xs text-[#86868B] bg-[#E8E8ED]/40 px-3 py-1.5 rounded-full border border-black/[0.03]">
-                v3.7 Master Pipeline Matrix
+                v3.8 Master Pipeline Matrix
             </div>
         </header>
 
@@ -195,18 +195,30 @@
     <div id="dashboardView" class="hidden min-h-screen flex flex-col bg-[#F5F5F7]">
         <header class="sticky top-0 z-50 bg-[#F5F5F7]/80 backdrop-blur-md border-b border-b-black/[0.05] px-6 py-3">
             <div class="max-w-[1700px] mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <div class="flex items-center space-x-3">
-                    <div class="h-6 w-6 rounded-md bg-black flex items-center justify-center">
-                        <span class="text-white font-bold text-xs tracking-tighter">A</span>
+                <div class="flex flex-col space-y-1">
+                    <div class="flex items-center space-x-3">
+                        <div class="h-6 w-6 rounded-md bg-black flex items-center justify-center">
+                            <span class="text-white font-bold text-xs tracking-tighter">A</span>
+                        </div>
+                        <span class="font-semibold text-sm tracking-tight">Aptonet Executive Dashboard</span>
+                        <span class="text-xs px-2 py-0.5 rounded bg-black/[0.05] text-[#86868B]" id="fileNameBadge">Report.xlsx</span>
                     </div>
-                    <span class="font-semibold text-sm tracking-tight">Aptonet Executive Dashboard</span>
-                    <span class="text-xs px-2 py-0.5 rounded bg-black/[0.05] text-[#86868B]" id="fileNameBadge">Report.xlsx</span>
+                    <!-- UPLOAD TIMESTAMP INDICATOR -->
+                    <div class="text-[11px] text-gray-500 font-medium pl-9" id="uploadTimestampBadge">
+                        Last Updated: --
+                    </div>
                 </div>
-                <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
+                <div class="flex items-center space-x-2 w-full sm:w-auto justify-end" id="actionButtonsWrapper">
                     <button id="saveGlobalDataBtn" class="bg-emerald-600 text-white hover:bg-emerald-700 text-[12.5px] font-medium px-3.5 py-1.5 rounded-lg shadow-sm transition-all flex items-center space-x-1.5 hidden">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5v2.25m0-13.5A2.25 2.25 0 009.75 3h4.5A2.25 2.25 0 0016.5 5.25V6m-10.5 6L12 3m0 0l5.25 9M12 3v13.5"></path></svg>
                         <span>Download Global Update File</span>
                     </button>
+                    <!-- EXCEL FORMAT EXPORT -->
+                    <button id="exportExcelBtn" class="bg-emerald-700 text-white hover:bg-emerald-800 text-[12.5px] font-medium px-3.5 py-1.5 rounded-lg shadow-sm transition-all flex items-center space-x-1.5">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-11.94a2.25 2.25 0 013.182 0l2.697 2.697a2.25 2.25 0 010 3.182L12 21.75H7.5V17.25L13.06 11.69z"></path></svg>
+                        <span>Export Excel Sheet</span>
+                    </button>
+                    <!-- PDF FORMAT EXPORT -->
                     <button id="exportPdfBtn" class="bg-[#0071E3] text-white hover:bg-[#0077ED] text-[12.5px] font-medium px-3.5 py-1.5 rounded-lg shadow-sm transition-all flex items-center space-x-1.5">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"></path></svg>
                         <span>Export Page-Fit PDF</span>
@@ -313,7 +325,6 @@
         let activeSortColumn = null;
         let isSortAscending = true;
 
-        // Found original dataset layout key configurations
         let resolvedColumnMapping = {}; 
 
         const STATUS_THEME = {
@@ -334,15 +345,17 @@
         const sheetSelector = document.getElementById('sheetSelector');
         const resetBtn = document.getElementById('resetBtn');
         const fileNameBadge = document.getElementById('fileNameBadge');
+        const uploadTimestampBadge = document.getElementById('uploadTimestampBadge');
         const demoTrigger = document.getElementById('demoTrigger');
         const sortConsultantBtn = document.getElementById('sortConsultantBtn');
         const consultantSortDirection = document.getElementById('consultantSortDirection');
         const exportPdfBtn = document.getElementById('exportPdfBtn');
+        const exportExcelBtn = document.getElementById('exportExcelBtn');
         const saveGlobalDataBtn = document.getElementById('saveGlobalDataBtn');
 
         let chartCache = {};
 
-        // --- AUTOMATIC GITHUB DATA PERSISTENCE LOOKUP ENGINE ---
+        // --- AUTOMATIC LOCAL DATA PERSISTENCE LOOKUP ENGINE ---
         window.addEventListener('DOMContentLoaded', () => {
             fetch('data.json')
                 .then(response => {
@@ -351,6 +364,9 @@
                 })
                 .then(savedData => {
                     fileNameBadge.innerText = savedData.fileName || "Live Tracking Ledger";
+                    if (savedData.timestamp) {
+                        uploadTimestampBadge.innerText = `Last Updated: ${savedData.timestamp}`;
+                    }
                     cleanTableData = savedData.payload;
                     filteredTableData = [...cleanTableData];
                     
@@ -364,14 +380,23 @@
                     renderTableBodyData();
                 })
                 .catch(err => {
-                    console.log("GitHub Storage Mode: Standing by for spreadsheet file upload context.");
+                    console.log("Storage Mode: Standing by for spreadsheet file upload context.");
                 });
         });
+
+        function updateUploadTimestamp() {
+            const currentDatetime = new Date().toLocaleString('en-US', { 
+                month: 'short', day: 'numeric', year: 'numeric', 
+                hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true 
+            });
+            uploadTimestampBadge.innerText = `Last Updated: ${currentDatetime}`;
+        }
 
         saveGlobalDataBtn.addEventListener('click', () => {
             const outputWrapper = {
                 fileName: fileNameBadge.innerText,
                 sheetName: currentSheetName,
+                timestamp: uploadTimestampBadge.innerText.replace('Last Updated: ', ''),
                 payload: cleanTableData
             };
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(outputWrapper, null, 2));
@@ -416,9 +441,39 @@
             return rawVal; 
         }
 
+        // EXPORT TO PDF LOGIC
         exportPdfBtn.addEventListener('click', () => {
             document.getElementById('printDateStamp').innerText = `Generated: ${new Date().toLocaleString()}`;
             window.print();
+        });
+
+        // EXPORT TO EXCEL LOGIC
+        exportExcelBtn.addEventListener('click', () => {
+            if (!filteredTableData || filteredTableData.length === 0) {
+                alert("No active rows to export.");
+                return;
+            }
+            
+            // Build explicit key rows maps with dynamic generated counts
+            const operationalExportRows = filteredTableData.map((row, index) => {
+                const map = {};
+                MANDATORY_COLUMNS.forEach(col => {
+                    if (col === "Number") {
+                        map[col] = index + 1;
+                    } else {
+                        map[col] = row[col];
+                    }
+                });
+                return map;
+            });
+
+            const ws = XLSX.utils.json_to_sheet(operationalExportRows);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Pipeline Export Data");
+            
+            // Generate clean filename matching context safely
+            const dynamicFilename = fileNameBadge.innerText.replace(/\.[^/.]+$/, "") + "_Filtered_Matrix.xlsx";
+            XLSX.writeFile(wb, dynamicFilename);
         });
 
         dropZone.addEventListener('click', () => fileInput.click());
@@ -431,6 +486,7 @@
 
         function processSelectedFile(file) {
             fileNameBadge.innerText = file.name;
+            updateUploadTimestamp();
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
@@ -447,6 +503,7 @@
 
         function loadMockDataset() {
             fileNameBadge.innerText = "rpt_rfqactivities_2026.xlsx";
+            updateUploadTimestamp();
             const simulatedRows = [
                 { "Prim. Sales": "John Doe", "Prm. Recruiter": "Aidan Mcg", "Date Issued": "7-May", "Job Title": "Capital Market Analyst", "Job Ref#": "26-05926", "Priority": "A", "Status": "OPEN", "Division": "Finance", "Client": "RBC CAPITAL MARKETS", "Maximum Pay Rate": 65, "Maximum Bill Rate": 90, "City": "Toronto", "Openings": 1, "Division of Prim. Sales": "Capital Markets", "Submittals": 2, "Interviews": 0, "Rejections": 0, "Hires": 0, "Last Activity Date": "27-May" },
                 { "Prim. Sales": "Jane Smith", "Prm. Recruiter": "Aidan Mcg", "Date Issued": "6-May", "Job Title": "DevOps Engineer", "Job Ref#": "26000B8C", "Priority": "A", "Status": "OPEN", "Division": "IT", "Client": "Societe Generale", "Maximum Pay Rate": 85, "Maximum Bill Rate": 120, "City": "Toronto", "Openings": 1, "Division of Prim. Sales": "Enterprise IT", "Submittals": 0, "Interviews": 0, "Rejections": 0, "Hires": 0, "Last Activity Date": "22-May" },
@@ -480,14 +537,13 @@
             
             if (rawSheetData.length === 0) return;
 
-            // Extract layout configurations dynamically
             applyFuzzyHeadersMap(Object.keys(rawSheetData[0] || {}));
 
             cleanTableData = rawSheetData.map(row => {
                 const standardizedRow = {};
                 MANDATORY_COLUMNS.forEach(col => {
                     if (col === "Number") {
-                        standardizedRow[col] = ""; // Calculated dynamically at visualization time
+                        standardizedRow[col] = ""; 
                         return;
                     }
                     const rawKeyMatched = resolvedColumnMapping[col];
@@ -508,7 +564,6 @@
             renderTableBodyData();
         }
 
-        // --- ULTRA FUZZY PARSING TRANSLATION MATRIX ENGINE ---
         function applyFuzzyHeadersMap(rawHeaders) {
             resolvedColumnMapping = {};
             MANDATORY_COLUMNS.forEach(target => {
@@ -519,7 +574,6 @@
                 let matchedRawKey = rawHeaders.find(h => {
                     let norm = h.toLowerCase().replace(/[^a-z0-9#]/g, '');
                     
-                    // Direct match variants checking
                     if (norm === lowerTarget) return true;
                     if (lowerTarget === "primsales" && (norm.includes("sales") || norm.includes("sale"))) return true;
                     if (lowerTarget === "prmrecruiter" && (norm.includes("recruiter") || norm.includes("recruit") || norm.includes("owner"))) return true;
@@ -615,7 +669,6 @@
             MANDATORY_COLUMNS.forEach(col => {
                 const th = document.createElement('th');
                 
-                // Absolute structural layout mapping to guarantee page container optimization
                 let colWidth = "5.5%"; 
                 if (col === "Number") colWidth = "3%";
                 if (col === "Priority" || col === "Status" || col === "City" || col === "Openings") colWidth = "4.2%";
@@ -659,7 +712,6 @@
                     
                     let cellVal = row[col];
                     
-                    // Inject runtime calculated record sequencing numbers
                     if (col === "Number") {
                         td.className += " text-center text-gray-400 font-medium bg-slate-50/30";
                         td.innerText = index + 1;
