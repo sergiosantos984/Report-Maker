@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aptonet Report & Executive Analytics Dashboard</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- SheetJS (XLSX) CDN -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,6 +47,7 @@
             #tableSearch, 
             #clearFiltersBtn,
             #exportPdfBtn,
+            #saveGlobalDataBtn,
             .bg-slate-200\/60 {
                 display: none !important;
             }
@@ -127,7 +125,6 @@
 </head>
 <body class="h-full">
 
-    <!-- Print Header Branding (Visible on PDF Export Only) -->
     <div id="printHeaderBranding" class="hidden">
         <div class="flex justify-between items-end">
             <div>
@@ -141,7 +138,6 @@
         </div>
     </div>
 
-    <!-- ================= LANDING PAGE VIEW ================= -->
     <div id="landingView" class="min-h-screen flex flex-col justify-between p-6 sm:p-12 transition-all duration-500">
         <header class="flex justify-between items-center max-w-7xl w-full mx-auto fade-in">
             <div class="flex items-center space-x-2.5">
@@ -151,7 +147,7 @@
                 <span class="font-semibold text-[17px] tracking-tight text-[#1D1D1F]">Aptonet</span>
             </div>
             <div class="text-xs text-[#86868B] bg-[#E8E8ED]/40 px-3 py-1.5 rounded-full border border-black/[0.03]">
-                v3.0 Final Production Suite
+                v3.5 Persistent Cloud Suite
             </div>
         </header>
 
@@ -190,7 +186,6 @@
     </div>
 
 
-    <!-- ================= DASHBOARD VIEW ================= -->
     <div id="dashboardView" class="hidden min-h-screen flex flex-col bg-[#F5F5F7]">
         <header class="sticky top-0 z-50 bg-[#F5F5F7]/80 backdrop-blur-md border-b border-b-black/[0.05] px-6 py-3">
             <div class="max-w-[1500px] mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -202,6 +197,10 @@
                     <span class="text-xs px-2 py-0.5 rounded bg-black/[0.05] text-[#86868B]" id="fileNameBadge">Report.xlsx</span>
                 </div>
                 <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
+                    <button id="saveGlobalDataBtn" class="bg-emerald-600 text-white hover:bg-emerald-700 text-[12.5px] font-medium px-3.5 py-1.5 rounded-lg shadow-sm transition-all flex items-center space-x-1.5 hidden">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5v2.25m0-13.5A2.25 2.25 0 009.75 3h4.5A2.25 2.25 0 0016.5 5.25V6m-10.5 6L12 3m0 0l5.25 9M12 3v13.5"></path></svg>
+                        <span>Download Global Update File</span>
+                    </button>
                     <button id="exportPdfBtn" class="bg-[#0071E3] text-white hover:bg-[#0077ED] text-[12.5px] font-medium px-3.5 py-1.5 rounded-lg shadow-sm transition-all flex items-center space-x-1.5">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"></path></svg>
                         <span>Export Page-Fit PDF</span>
@@ -217,12 +216,9 @@
 
         <main class="flex-1 max-w-[1500px] w-full mx-auto p-4 space-y-4 fade-in">
             
-            <!-- KPI CARD SYSTEM -->
             <div id="kpiGrid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
-                <!-- Injected Dynamically -->
-            </div>
+                </div>
 
-            <!-- ANALYTICS GRAPHS CHART MATRICES -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 <div class="bg-white rounded-xl p-4 border border-black/[0.04] shadow-sm flex flex-col">
                     <h3 class="text-[13px] font-semibold tracking-tight text-[#86868B] mb-2">Positions by Status</h3>
@@ -244,7 +240,6 @@
                 </div>
             </div>
 
-            <!-- COMPACT PAGE-FIT LEDGER TABLE COMPONENT -->
             <div class="bg-white rounded-xl border border-black/[0.04] shadow-sm overflow-hidden flex flex-col">
                 <div class="p-3 border-b border-black/[0.04] flex flex-col md:flex-row justify-between items-stretch md:items-center gap-3 bg-[#FAFAFC]">
                     <div class="flex flex-col sm:flex-row sm:items-center gap-2">
@@ -288,7 +283,6 @@
         </main>
     </div>
 
-    <!-- ================= DASHBOARD CORE IMPLEMENTATION LOGIC ================= -->
     <script>
         let workbookInstance = null;
         let currentSheetName = "";
@@ -327,15 +321,61 @@
         const sortConsultantBtn = document.getElementById('sortConsultantBtn');
         const consultantSortDirection = document.getElementById('consultantSortDirection');
         const exportPdfBtn = document.getElementById('exportPdfBtn');
+        const saveGlobalDataBtn = document.getElementById('saveGlobalDataBtn');
 
         let chartCache = {};
+
+        // --- AUTOMATIC GITHUB DATA PERSISTENCE LOOKUP ENGINE ---
+        window.addEventListener('DOMContentLoaded', () => {
+            fetch('data.json')
+                .then(response => {
+                    if (!response.ok) throw new Error('No pre-saved dataset found');
+                    return response.json();
+                })
+                .then(savedData => {
+                    // Preloaded Data found! Render directly.
+                    fileNameBadge.innerText = savedData.fileName || "Live Tracking Ledger";
+                    cleanTableData = savedData.payload;
+                    filteredTableData = [...cleanTableData];
+                    
+                    landingView.classList.add('hidden');
+                    dashboardView.classList.remove('hidden');
+                    
+                    // Re-create Sheet Dropdown containing only static active sheet
+                    sheetSelector.innerHTML = `<option value="default">${savedData.sheetName || 'Master'}</option>`;
+                    
+                    detectTableColumnsFuzzy();
+                    computeMetricsAndRenderKPIs();
+                    renderExecutiveVisualizations();
+                    buildInteractiveTableHeadings();
+                    renderTableBodyData();
+                })
+                .catch(err => {
+                    console.log("GitHub Storage Mode: Standing by for spreadsheet file upload context.");
+                });
+        });
+
+        // --- DOWNLOADING PERSISTENT FILE CONTEXT ---
+        saveGlobalDataBtn.addEventListener('click', () => {
+            const outputWrapper = {
+                fileName: fileNameBadge.innerText,
+                sheetName: currentSheetName,
+                payload: cleanTableData
+            };
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(outputWrapper, null, 2));
+            const dlAnchor = document.createElement('a');
+            dlAnchor.setAttribute("href", dataStr);
+            dlAnchor.setAttribute("download", "data.json");
+            document.body.appendChild(dlAnchor);
+            dlAnchor.click();
+            dlAnchor.remove();
+        });
 
         // --- EXTENDED DATE FORMATTER ENGINE ---
         function convertToExtendedDate(rawVal) {
             if (!rawVal) return "";
             let str = String(rawVal).trim();
             
-            // Handles native numeric standard serial conversions from excel engine logs
             if (!isNaN(str) && str.length > 2 && parseInt(str) > 40000) {
                 try {
                     const dateObj = new Date((parseInt(str) - 25569) * 86400 * 1000);
@@ -344,7 +384,6 @@
                 } catch(e) {}
             }
 
-            // Fallback parsing framework logic for parsing common text shortcuts
             let parts = str.split(/[-/\s]+/);
             if (parts.length >= 2) {
                 let day = parseInt(parts[0]);
@@ -383,7 +422,7 @@
         dropZone.addEventListener('drop', (e) => { e.preventDefault(); dropZone.classList.remove('border-[#0071E3]', 'bg-[#0071E3]/05'); if (e.dataTransfer.files.length) processSelectedFile(e.dataTransfer.files[0]); });
         fileInput.addEventListener('change', (e) => { if (e.target.files.length) processSelectedFile(e.target.files[0]); });
         demoTrigger.addEventListener('click', (e) => { e.stopPropagation(); loadMockDataset(); });
-        resetBtn.addEventListener('click', () => { dashboardView.classList.add('hidden'); landingView.classList.remove('hidden'); fileInput.value = ''; workbookInstance = null; });
+        resetBtn.addEventListener('click', () => { dashboardView.classList.add('hidden'); landingView.classList.remove('hidden'); saveGlobalDataBtn.classList.add('hidden'); fileInput.value = ''; workbookInstance = null; });
 
         function processSelectedFile(file) {
             fileNameBadge.innerText = file.name;
@@ -392,6 +431,7 @@
                 try {
                     const data = new Uint8Array(e.target.result);
                     workbookInstance = XLSX.read(data, { type: 'array' });
+                    saveGlobalDataBtn.classList.remove('hidden'); // Show GitHub data saver button
                     initializeWorkbookViews();
                 } catch (error) {
                     alert("Failed parsing target data grid asset matrix cleanly.");
@@ -418,6 +458,7 @@
             const ws = XLSX.utils.json_to_sheet(simulatedRows);
             workbookInstance = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(workbookInstance, ws, "Master Performance Ledger");
+            saveGlobalDataBtn.classList.remove('hidden');
             initializeWorkbookViews();
         }
 
@@ -448,7 +489,6 @@
                     let rawVal = row[key];
                     let lowercaseKey = normalizedKey.toLowerCase();
                     
-                    // TARGETED DYNAMIC UPDATE: Targets both your column variants perfectly
                     if (lowercaseKey === "date issued" || lowercaseKey === "last activity date" || lowercaseKey === "last activity") {
                         cleanRow[normalizedKey] = convertToExtendedDate(rawVal);
                     } else {
@@ -558,16 +598,22 @@
             headerRow.innerHTML = "";
             if (cleanTableData.length === 0) return;
             
+            const lineNumTh = document.createElement('th');
+            lineNumTh.style.width = "3.5%";
+            lineNumTh.className = "px-1.5 py-2 font-bold tracking-tight text-center text-gray-400 select-none border-r border-slate-200/60";
+            lineNumTh.innerText = "#";
+            headerRow.appendChild(lineNumTh);
+
             const headings = Object.keys(cleanTableData[0]);
             headings.forEach(col => {
                 const th = document.createElement('th');
                 
                 let colWidth = "7%"; 
                 let lowName = col.toLowerCase();
-                if (lowName.includes('title')) colWidth = "13%";
-                if (lowName.includes('client')) colWidth = "13%";
-                if (lowName === "date issued" || lowName === "last activity date" || lowName === "last activity") colWidth = "10%"; 
-                if (lowName.includes('recruiter') || lowName.includes('resourcer')) colWidth = "9%";
+                if (lowName.includes('title')) colWidth = "12.5%";
+                if (lowName.includes('client')) colWidth = "12.5%";
+                if (lowName === "date issued" || lowName === "last activity date" || lowName === "last activity") colWidth = "9.5%"; 
+                if (lowName.includes('recruiter') || lowName.includes('resourcer')) colWidth = "8.5%";
                 if ([submittalsColName, interviewsColName, rejectionsColName, hiresColName].includes(col)) colWidth = "5%";
 
                 th.style.width = colWidth;
@@ -599,10 +645,15 @@
 
             const headings = Object.keys(cleanTableData[0]);
 
-            filteredTableData.forEach(row => {
+            filteredTableData.forEach((row, index) => {
                 const tr = document.createElement('tr');
                 tr.className = "even:bg-slate-50/30 hover:bg-slate-100/40 transition-colors border-b border-slate-200/40";
                 
+                const lineNumTd = document.createElement('td');
+                lineNumTd.className = "px-1.5 py-1.5 text-center font-medium text-gray-400 bg-slate-50/50 border-r border-slate-200/60";
+                lineNumTd.innerText = index + 1;
+                tr.appendChild(lineNumTd);
+
                 headings.forEach(col => {
                     const td = document.createElement('td');
                     td.className = "px-1.5 py-1.5 text-[#1D1D1F] overflow-hidden text-ellipsis whitespace-nowrap align-middle border-r border-slate-100";
