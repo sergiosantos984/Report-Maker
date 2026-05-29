@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aptonet Report & Executive Analytics Dashboard</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- SheetJS (XLSX) CDN -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -128,7 +125,6 @@
 </head>
 <body class="h-full">
 
-    <!-- Print Header Branding (Visible on PDF Export Only) -->
     <div id="printHeaderBranding" class="hidden">
         <div class="flex justify-between items-end">
             <div>
@@ -142,7 +138,6 @@
         </div>
     </div>
 
-    <!-- ================= LANDING PAGE VIEW ================= -->
     <div id="landingView" class="min-h-screen flex flex-col justify-between p-6 sm:p-12 transition-all duration-500">
         <header class="flex justify-between items-center max-w-7xl w-full mx-auto fade-in">
             <div class="flex items-center space-x-2.5">
@@ -152,7 +147,7 @@
                 <span class="font-semibold text-[17px] tracking-tight text-[#1D1D1F]">Aptonet</span>
             </div>
             <div class="text-xs text-[#86868B] bg-[#E8E8ED]/40 px-3 py-1.5 rounded-full border border-black/[0.03]">
-                v3.8 Master Pipeline Matrix
+                v4.0 Master Pipeline Matrix
             </div>
         </header>
 
@@ -191,7 +186,6 @@
     </div>
 
 
-    <!-- ================= DASHBOARD VIEW ================= -->
     <div id="dashboardView" class="hidden min-h-screen flex flex-col bg-[#F5F5F7]">
         <header class="sticky top-0 z-50 bg-[#F5F5F7]/80 backdrop-blur-md border-b border-b-black/[0.05] px-6 py-3">
             <div class="max-w-[1700px] mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -203,7 +197,6 @@
                         <span class="font-semibold text-sm tracking-tight">Aptonet Executive Dashboard</span>
                         <span class="text-xs px-2 py-0.5 rounded bg-black/[0.05] text-[#86868B]" id="fileNameBadge">Report.xlsx</span>
                     </div>
-                    <!-- UPLOAD TIMESTAMP INDICATOR -->
                     <div class="text-[11px] text-gray-500 font-medium pl-9" id="uploadTimestampBadge">
                         Last Updated: --
                     </div>
@@ -213,12 +206,10 @@
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5v2.25m0-13.5A2.25 2.25 0 009.75 3h4.5A2.25 2.25 0 0016.5 5.25V6m-10.5 6L12 3m0 0l5.25 9M12 3v13.5"></path></svg>
                         <span>Download Global Update File</span>
                     </button>
-                    <!-- EXCEL FORMAT EXPORT -->
                     <button id="exportExcelBtn" class="bg-emerald-700 text-white hover:bg-emerald-800 text-[12.5px] font-medium px-3.5 py-1.5 rounded-lg shadow-sm transition-all flex items-center space-x-1.5">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-11.94a2.25 2.25 0 013.182 0l2.697 2.697a2.25 2.25 0 010 3.182L12 21.75H7.5V17.25L13.06 11.69z"></path></svg>
                         <span>Export Excel Sheet</span>
                     </button>
-                    <!-- PDF FORMAT EXPORT -->
                     <button id="exportPdfBtn" class="bg-[#0071E3] text-white hover:bg-[#0077ED] text-[12.5px] font-medium px-3.5 py-1.5 rounded-lg shadow-sm transition-all flex items-center space-x-1.5">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"></path></svg>
                         <span>Export Page-Fit PDF</span>
@@ -234,12 +225,9 @@
 
         <main class="flex-1 max-w-[1700px] w-full mx-auto p-4 space-y-4 fade-in">
             
-            <!-- KPI CARD SYSTEM -->
             <div id="kpiGrid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
-                <!-- Injected Dynamically -->
-            </div>
+                </div>
 
-            <!-- ANALYTICS GRAPHS CHART MATRICES -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 <div class="bg-white rounded-xl p-4 border border-black/[0.04] shadow-sm flex flex-col">
                     <h3 class="text-[13px] font-semibold tracking-tight text-[#86868B] mb-2">Positions by Status</h3>
@@ -261,7 +249,6 @@
                 </div>
             </div>
 
-            <!-- COMPACT PAGE-FIT LEDGER TABLE COMPONENT -->
             <div class="bg-white rounded-xl border border-black/[0.04] shadow-sm overflow-hidden flex flex-col">
                 <div class="p-3 border-b border-black/[0.04] flex flex-col md:flex-row justify-between items-stretch md:items-center gap-3 bg-[#FAFAFC]">
                     <div class="flex flex-col sm:flex-row sm:items-center gap-2">
@@ -286,7 +273,6 @@
                     </div>
                 </div>
 
-                <!-- Strict Fit Engine Frame -->
                 <div class="overflow-x-auto w-full no-scrollbar">
                     <table id="recruitmentTable" class="w-full text-left border-collapse text-[10.5px] table-fixed min-w-[1500px] xl:min-w-full">
                         <thead>
@@ -306,9 +292,8 @@
         </main>
     </div>
 
-    <!-- ================= DASHBOARD CORE IMPLEMENTATION LOGIC ================= -->
     <script>
-        // --- 20 CRITICAL GOVERNANCE COLUMNS PROFILE ---
+        // --- 20 CRITICAL GOVERNANCE COLUMNS TARGET HOOKS PROFILE ---
         const MANDATORY_COLUMNS = [
             "Number", "Prim. Sales", "Prm. Recruiter", "Date Issued", "Job Title", 
             "Job Ref#", "Priority", "Status", "Division", "Client", 
@@ -355,7 +340,7 @@
 
         let chartCache = {};
 
-        // --- AUTOMATIC LOCAL DATA PERSISTENCE LOOKUP ENGINE ---
+        // --- DEPLOYMENT DATA STACK DETECTOR ENGINE ---
         window.addEventListener('DOMContentLoaded', () => {
             fetch('data.json')
                 .then(response => {
@@ -441,39 +426,186 @@
             return rawVal; 
         }
 
-        // EXPORT TO PDF LOGIC
+        // ================= PDF INTERPRETATION EXPORT =================
         exportPdfBtn.addEventListener('click', () => {
             document.getElementById('printDateStamp').innerText = `Generated: ${new Date().toLocaleString()}`;
             window.print();
         });
 
-        // EXPORT TO EXCEL LOGIC
+        // ================= PREMIUM ENTERPRISE EXCEL EXPORT ENGINE =================
         exportExcelBtn.addEventListener('click', () => {
             if (!filteredTableData || filteredTableData.length === 0) {
                 alert("No active rows to export.");
                 return;
             }
-            
-            // Build explicit key rows maps with dynamic generated counts
-            const operationalExportRows = filteredTableData.map((row, index) => {
-                const map = {};
-                MANDATORY_COLUMNS.forEach(col => {
-                    if (col === "Number") {
-                        map[col] = index + 1;
-                    } else {
-                        map[col] = row[col];
-                    }
-                });
-                return map;
+
+            const wb = XLSX.book_new();
+            const wsData = [];
+
+            const THEME = {
+                headerBg: "1B365D",      
+                headerText: "FFFFFF",    
+                zebraLight: "F8FAFC",    
+                borderGray: "CBD5E1",    
+                kpiBg: "F1F5F9",         
+                status: {
+                    open: "DCFCE7",      
+                    filled: "BBF7D0",    
+                    hold: "FFEDD5",      
+                    closed: "E2E8F0"     
+                },
+                priority: {
+                    a: "FEE2E2",         
+                    b: "FEF08A",         
+                    covered: "DBEAFE"    
+                }
+            };
+
+            let mOpen = 0, mFilled = 0, mSub = 0, mInt = 0, mHir = 0;
+            filteredTableData.forEach(row => {
+                const s = String(row["Status"] || '').toLowerCase();
+                mSub += parseInt(row["Submittals"]) || 0;
+                mInt += parseInt(row["Interviews"]) || 0;
+                mHir += parseInt(row["Hires"]) || 0;
+                if (s.includes('open')) mOpen++;
+                if (s.includes('fill')) mFilled++;
             });
 
-            const ws = XLSX.utils.json_to_sheet(operationalExportRows);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Pipeline Export Data");
-            
-            // Generate clean filename matching context safely
-            const dynamicFilename = fileNameBadge.innerText.replace(/\.[^/.]+$/, "") + "_Filtered_Matrix.xlsx";
-            XLSX.writeFile(wb, dynamicFilename);
+            // KPI Titles Setup
+            wsData.push([
+                "Total Open Roles", "", 
+                "Total Filled Roles", "", 
+                "Total Submittals", "", 
+                "Total Interviews", "", 
+                "Total Hires", "", "", "", "", "", "", "", "", ""
+            ]);
+            // KPI Values Setup
+            wsData.push([
+                mOpen, "", mFilled, "", mSub, "", mInt, "", mHir, "", "", "", "", "", "", "", "", ""
+            ]);
+            wsData.push(Array(18).fill(""));
+
+            // Dynamic tracking header array (Excluding the client-side row counter "Number")
+            const trackingColumns = MANDATORY_COLUMNS.filter(col => col !== "Number");
+            wsData.push(trackingColumns);
+
+            filteredTableData.forEach(row => {
+                const rowPayload = trackingColumns.map(col => row[col]);
+                wsData.push(rowPayload);
+            });
+
+            const ws = XLSX.utils.aoa_to_sheet(wsData);
+
+            ws['!merges'] = [
+                { s: { r: 0, c: 0 }, e: { r: 0, c: 1 } }, 
+                { s: { r: 1, c: 0 }, e: { r: 1, c: 1 } }, 
+                { s: { r: 0, c: 2 }, e: { r: 0, c: 3 } }, 
+                { s: { r: 1, c: 2 }, e: { r: 1, c: 3 } }, 
+                { s: { r: 0, c: 4 }, e: { r: 0, c: 5 } }, 
+                { s: { r: 1, c: 4 }, e: { r: 1, c: 5 } }, 
+                { s: { r: 0, c: 6 }, e: { r: 0, c: 7 } }, 
+                { s: { r: 1, c: 6 }, e: { r: 1, c: 7 } }, 
+                { s: { r: 0, c: 8 }, e: { r: 0, c: 9 } }, 
+                { s: { r: 1, c: 8 }, e: { r: 1, c: 9 } }  
+            ];
+
+            ws['!autofilter'] = { ref: `A4:R${wsData.length}` };
+            ws['!views'] = [{ state: 'frozen', ySplit: 4, xSplit: 0, topLeftCell: 'A5', activePane: 'bottomLeft' }];
+
+            const range = XLSX.utils.decode_range(ws['!ref']);
+            for (let r = range.s.r; r <= range.e.r; r++) {
+                for (let c = range.s.c; c <= range.e.c; c++) {
+                    const cellRef = XLSX.utils.encode_cell({ r: r, c: c });
+                    if (!ws[cellRef]) ws[cellRef] = { t: 'z' }; 
+                    
+                    ws[cellRef].s = {
+                        font: { name: "Calibri", size: 11 },
+                        border: {
+                            top: { style: "thin", color: { rgb: THEME.borderGray } },
+                            bottom: { style: "thin", color: { rgb: THEME.borderGray } },
+                            left: { style: "thin", color: { rgb: THEME.borderGray } },
+                            right: { style: "thin", color: { rgb: THEME.borderGray } }
+                        }
+                    };
+
+                    if (r === 0 && c < 10) {
+                        ws[cellRef].s.fill = { fgColor: { rgb: THEME.kpiBg } };
+                        ws[cellRef].s.font = { name: "Calibri", size: 10, bold: true, color: { rgb: "475569" } };
+                        ws[cellRef].s.alignment = { horizontal: "center", vertical: "center" };
+                    }
+                    else if (r === 1 && c < 10) {
+                        ws[cellRef].s.fill = { fgColor: { rgb: THEME.kpiBg } };
+                        ws[cellRef].s.font = { name: "Calibri", size: 16, bold: true, color: { rgb: "0F172A" } };
+                        ws[cellRef].s.alignment = { horizontal: "center", vertical: "center" };
+                    }
+                    else if (r === 3) {
+                        ws[cellRef].s.fill = { fgColor: { rgb: THEME.headerBg } };
+                        ws[cellRef].s.font = { name: "Calibri", size: 11, bold: true, color: { rgb: THEME.headerText } };
+                        ws[cellRef].s.alignment = { horizontal: "left", vertical: "center", wrapText: true };
+                    }
+                    else if (r >= 4) {
+                        if (r % 2 === 1) {
+                            ws[cellRef].s.fill = { fgColor: { rgb: THEME.zebraLight } };
+                        }
+
+                        const headerColumnName = trackingColumns[c];
+                        const cellValueRawStr = String(ws[cellRef].v || '').trim();
+
+                        if (headerColumnName === "Status") {
+                            const normalizedStatus = cellValueRawStr.toLowerCase();
+                            let targetFill = null;
+                            if (normalizedStatus.includes('open')) targetFill = THEME.status.open;
+                            else if (normalizedStatus.includes('fill')) targetFill = THEME.status.filled;
+                            else if (normalizedStatus.includes('hold')) targetFill = THEME.status.hold;
+                            else if (normalizedStatus.includes('close')) targetFill = THEME.status.closed;
+
+                            if (targetFill) {
+                                ws[cellRef].s.fill = { fgColor: { rgb: targetFill } };
+                                ws[cellRef].s.font = { name: "Calibri", size: 11, bold: true };
+                                ws[cellRef].s.alignment = { horizontal: "center" };
+                            }
+                        }
+
+                        if (headerColumnName === "Priority") {
+                            const normalizedPriority = cellValueRawStr.toLowerCase();
+                            let targetFill = null;
+                            if (normalizedPriority === 'a') targetFill = THEME.priority.a;
+                            else if (normalizedPriority === 'b') targetFill = THEME.priority.b;
+                            else if (normalizedPriority === 'covered') targetFill = THEME.priority.covered;
+
+                            if (targetFill) {
+                                ws[cellRef].s.fill = { fgColor: { rgb: targetFill } };
+                                ws[cellRef].s.font = { name: "Calibri", size: 11, bold: true };
+                                ws[cellRef].s.alignment = { horizontal: "center" };
+                            }
+                        }
+
+                        if (["Submittals", "Interviews", "Rejections", "Hires", "Openings"].includes(headerColumnName)) {
+                            ws[cellRef].s.alignment = { horizontal: "right" };
+                        }
+                        if (headerColumnName.includes("Rate") && ws[cellRef].v && !isNaN(ws[cellRef].v)) {
+                            ws[cellRef].z = '"$"#,##0.00';
+                            ws[cellRef].s.alignment = { horizontal: "right" };
+                        }
+                    }
+                }
+            }
+
+            const columnWidthsProfile = trackingColumns.map((col, index) => {
+                let maximumCharacterLengthCount = col.length + 4; 
+                for (let rowIdx = 4; rowIdx < wsData.length; rowIdx++) {
+                    const rowCellValue = String(wsData[rowIdx][index] || '');
+                    if (rowCellValue.length > maximumCharacterLengthCount) {
+                        maximumCharacterLengthCount = rowCellValue.length;
+                    }
+                }
+                return { wch: Math.min(Math.max(maximumCharacterLengthCount, 12), 45) }; 
+            });
+            ws['!cols'] = columnWidthsProfile;
+
+            XLSX.utils.book_append_sheet(wb, ws, "Operations Tracker Dashboard");
+            const compiledFileDownloadStringToken = fileNameBadge.innerText.replace(/\.[^/.]+$/, "") + "_Production_Ledger.xlsx";
+            XLSX.writeFile(wb, compiledFileDownloadStringToken);
         });
 
         dropZone.addEventListener('click', () => fileInput.click());
